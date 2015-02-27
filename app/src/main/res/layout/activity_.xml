@@ -117,8 +117,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentRight="false"
         android:layout_below="@+id/"
-        android:layout_marginTop="40dp"
-        android:id="@+id/linearLayout4">
+        android:layout_marginTop="40dp">
 
         <EditText
             android:layout_width="match_parent"
