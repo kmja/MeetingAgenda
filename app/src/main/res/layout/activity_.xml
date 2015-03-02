@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityActivity"
-    android:background="#ff0bbbff"
+    android:background="#00628b"
     android:id="@+id/">
 
     <LinearLayout
@@ -14,7 +14,8 @@
         android:layout_alignParentStart="true"
         android:textAlignment="center"
         android:id="@+id/linearLayout"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#81a594">
 
         <TextView
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             android:inputType="none"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:elegantTextHeight="false"
             android:paddingLeft="90dp" />
     </LinearLayout>
@@ -208,7 +209,7 @@
             android:text="Cancel"
             android:id="@+id/button"
             android:singleLine="false"
-            android:background="#ffffff"
+            android:background="#e6e6dc"
             android:paddingLeft="72dp"
             android:paddingTop="25dp"
             android:paddingRight="72dp"
@@ -219,7 +220,7 @@
             android:layout_height="wrap_content"
             android:text="Save"
             android:id="@+id/button2"
-            android:background="#ffffff"
+            android:background="#e6e6dc"
             android:paddingLeft="76dp"
             android:paddingRight="76dp"
             android:paddingTop="25dp"
