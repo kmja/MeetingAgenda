@@ -1,9 +1,11 @@
-package com.example.karl.meetingagenda;
+package com.example.karl.meetingagenda.android;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.karl.meetingagenda.R;
 
 
 public class ActivityActivity extends ActionBarActivity {
