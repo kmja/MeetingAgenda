@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:id="@+id/linearLayout"
         android:padding="16dp"
-        android:background="#81a594">
+        android:background="#29aba4">
 
         <TextView
             android:layout_width="match_parent"
