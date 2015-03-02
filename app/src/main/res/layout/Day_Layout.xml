@@ -36,7 +36,8 @@
             android:src="@drawable/plus"
             android:contentDescription="@string/PlusIcon"
             android:background="#00628b"
-            android:tint="#ffffff" />
+            android:tint="#ffffff"
+            android:layout_marginLeft="225dp" />
     </LinearLayout>
 
 
