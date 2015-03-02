@@ -8,7 +8,7 @@ public class AgendaModel extends Observable {
 
 	List<Day> days = new ArrayList<Day>();
 	List<Activity> parkedActivities = new ArrayList<Activity>();
-	
+
 	/**
 	 * adds create and add a new day to model with starting time (hours and minutes)
 	 */
@@ -81,7 +81,7 @@ public class AgendaModel extends Observable {
 		model.addActivity(new Activity("Working in groups","Working on business model for idea 1",35,1),d,2);
 		model.addActivity(new Activity("Idea 1 discussion","Discussing the results of idea 1",15,2),d,3);
 		model.addActivity(new Activity("Coffee break","Time for some coffee",20,3),d,4);
-		
+
 		return model;
 	}
 }
