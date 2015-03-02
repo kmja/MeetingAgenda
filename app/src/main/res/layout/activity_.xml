@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityActivity"
-    android:background="#00628b"
+    android:background="#e6e6dc"
     android:id="@+id/">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:id="@+id/linearLayout"
         android:padding="16dp"
-        android:background="#29aba4">
+        android:background="#00628b">
 
         <TextView
             android:layout_width="match_parent"
@@ -49,10 +49,10 @@
             android:id="@+id/editText"
             android:layout_weight="1"
             android:text="Name"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:inputType="text"
             android:textSize="18dp"
-            android:backgroundTint="#ffffff" />
+            android:backgroundTint="#000000" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,10 +73,10 @@
             android:id="@+id/editText2"
             android:layout_weight="1"
             android:text="Length"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginRight="20dp"
             android:textSize="18dp"
-            android:backgroundTint="#ffffff" />
+            android:backgroundTint="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
             android:text="min"
             android:id="@+id/textView2"
             android:layout_weight="1"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:textIsSelectable="false"
             android:textSize="18dp" />
     </LinearLayout>
@@ -123,19 +123,19 @@
                     android:layout_height="wrap_content"
                     android:text="Presentation"
                     android:id="@+id/radioButton"
-                    android:textColor="#ffffff"
+                    android:textColor="#000000"
                     android:textSize="18dp"
                     android:layout_marginBottom="10dp"
-                    android:buttonTint="#ffffff" />
+                    android:buttonTint="#000000" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Group Work"
                     android:id="@+id/radioButton3"
-                    android:textColor="#ffffff"
+                    android:textColor="#000000"
                     android:textSize="18dp"
-                    android:buttonTint="#ffffff" />
+                    android:buttonTint="#000000" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -151,19 +151,19 @@
                         android:layout_height="wrap_content"
                         android:text="Discussion"
                         android:id="@+id/radioButton2"
-                        android:textColor="#ffffff"
+                        android:textColor="#000000"
                         android:textSize="18dp"
                         android:layout_marginBottom="10dp"
-                        android:buttonTint="#ffffff" />
+                        android:buttonTint="#000000" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Break"
                         android:id="@+id/radioButton4"
-                        android:textColor="#ffffff"
+                        android:textColor="#000000"
                         android:textSize="18dp"
-                        android:buttonTint="#ffffff" />
+                        android:buttonTint="#000000" />
 
                 </LinearLayout>
 
@@ -192,9 +192,9 @@
             android:ems="10"
             android:id="@+id/editText3"
             android:text="Description"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#ffffff" />
+            android:backgroundTint="#000000" />
     </LinearLayout>
 
     <LinearLayout
@@ -213,22 +213,28 @@
             android:text="Cancel"
             android:id="@+id/button"
             android:singleLine="false"
-            android:background="#e6e6dc"
-            android:paddingLeft="72dp"
+            android:background="#29aba4"
+            android:paddingLeft="65dp"
             android:paddingTop="25dp"
-            android:paddingRight="72dp"
-            android:paddingBottom="25dp" />
+            android:paddingRight="60dp"
+            android:paddingBottom="25dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="18dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
             android:id="@+id/button2"
-            android:background="#e6e6dc"
-            android:paddingLeft="76dp"
-            android:paddingRight="76dp"
+            android:background="#29aba4"
+            android:paddingLeft="75dp"
+            android:paddingRight="68dp"
             android:paddingTop="25dp"
-            android:paddingBottom="25dp" />
+            android:paddingBottom="25dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="18dp" />
     </LinearLayout>
 
 
