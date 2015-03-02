@@ -7,12 +7,26 @@ import android.view.MenuItem;
 
 import com.example.karl.meetingagenda.R;
 
+import java.util.List;
+
+import model.AgendaModel;
+import model.Day;
+
 public class DayActivity extends ActionBarActivity {
+
+    AgendaModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dayLayout);
+        model = new AgendaModel().getModelWithExampleData();
+        List<Day> days = model.getDays();
+        Day day1 = days.get(0);
+        
+
+
+
     }
 
 

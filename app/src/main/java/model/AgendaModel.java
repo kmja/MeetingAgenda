@@ -72,9 +72,9 @@ public class AgendaModel extends Observable {
 	/**
 	 * you can use this method to create some test data and test your implementation
 	 */
-	public static AgendaModel getModelWithExampleData() {
+	public AgendaModel getModelWithExampleData() {
 		AgendaModel model = new AgendaModel();
-		
+
 		Day d = model.addDay(8,0);
 		model.addActivity(new Activity("Introduction","Intro to the meeting",10,0),d,0);
 		model.addActivity(new Activity("Idea 1","Presenting idea 1",30,0),d,1);
@@ -84,4 +84,10 @@ public class AgendaModel extends Observable {
 
 		return model;
 	}
+
+    public List<Day> getDays(){
+
+        return this.days;
+    }
+
 }
