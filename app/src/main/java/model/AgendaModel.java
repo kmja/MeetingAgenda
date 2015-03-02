@@ -7,7 +7,7 @@ import java.util.Observable;
 public class AgendaModel extends Observable {
 
 	List<Day> days = new ArrayList<Day>();
-	List<Activity> parkedActivites = new ArrayList<Activity>();
+	List<Activity> parkedActivities = new ArrayList<Activity>();
 	
 	/**
 	 * adds create and add a new day to model with starting time (hours and minutes)
@@ -31,7 +31,7 @@ public class AgendaModel extends Observable {
 	 * add an activity to parked activities
 	 */
 	public void addParkedActivity(Activity act) {
-		parkedActivites.add(act);
+		parkedActivities.add(act);
 		setChanged();
 		notifyObservers("ActivityParked");
 	}
@@ -40,7 +40,7 @@ public class AgendaModel extends Observable {
 	 * remove an activity on provided position from parked activites 
 	 */
 	public Activity removeParkedActivity(int position) {
-		Activity act =  parkedActivites.remove(position);
+		Activity act =  parkedActivities.remove(position);
 		setChanged();
 		notifyObservers("ParkedActivityRemoved");
 		return act;
