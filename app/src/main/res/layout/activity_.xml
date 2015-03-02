@@ -113,7 +113,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Discussion2"
+                android:text="Discussion"
                 android:id="@+id/radioButton2"
                 android:textColor="#ffffff"
                 android:textSize="18dp" />
