@@ -19,7 +19,7 @@ public class DayActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dayLayout);
+        setContentView(R.layout.daylayout);
         model = new AgendaModel().getModelWithExampleData();
         List<Day> days = model.getDays();
         Day day1 = days.get(0);
