@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.example.karl.meetingagenda.R;
 
 
-public class ActivityActivity extends ActionBarActivity {
+public class ActivityActivity extends android.app.Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
