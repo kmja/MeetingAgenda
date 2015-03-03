@@ -28,7 +28,8 @@
             android:textSize="30dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:elegantTextHeight="false" />
+            android:elegantTextHeight="false"
+            android:gravity="center_horizontal" />
 
     </LinearLayout>
 
