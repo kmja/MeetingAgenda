@@ -46,7 +46,7 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:id="@+id/listView" />
     </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1.0"
-            android:text="New Button"
+            android:text="Add Activity"
             android:id="@+id/button3"
             android:background="#29aba4"
             android:textColor="#ffffff"
