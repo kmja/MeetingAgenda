@@ -18,18 +18,51 @@
         android:background="#00628b"
         android:gravity="center_horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Day XX"
-            android:id="@+id/textView"
-            android:inputType="none"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:elegantTextHeight="false"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Day XX"
+                android:id="@+id/textView"
+                android:inputType="none"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:elegantTextHeight="false"
+                android:gravity="center_horizontal" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Start:"
+                    android:id="@+id/textView3"
+                    android:textColor="#ffffff" />
+
+                <EditText
+                    android:layout_width="53dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editText4"
+                    android:text="08:00"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -46,7 +79,7 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="445dp"
+            android:layout_height="wrap_content"
             android:id="@+id/listView" />
     </LinearLayout>
 

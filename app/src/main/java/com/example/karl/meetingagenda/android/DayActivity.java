@@ -1,5 +1,6 @@
 package com.example.karl.meetingagenda.android;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import java.util.List;
 import model.AgendaModel;
 import model.Day;
 
-public class DayActivity extends ActionBarActivity {
+public class DayActivity extends Activity {
 
     AgendaModel model;
 
@@ -24,6 +25,8 @@ public class DayActivity extends ActionBarActivity {
         model = new AgendaModel().getModelWithExampleData();
         List<Day> days = model.getDays();
         Day day1 = days.get(0);
+
+
 
     }
 
