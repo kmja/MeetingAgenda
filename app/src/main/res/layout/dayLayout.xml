@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     tools:context=".ActivityActivity"
     android:background="#e6e6dc"
-    android:id="@+id/">
+    android:id="@+id/daylayout_old">
 
     <LinearLayout
         android:orientation="horizontal"

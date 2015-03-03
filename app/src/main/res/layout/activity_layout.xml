@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context=".ActivityActivity"
     android:background="#e6e6dc"
-    android:id="@+id/">
+    android:id="@+id/activity_layout">
 
     <LinearLayout
         android:orientation="horizontal"
