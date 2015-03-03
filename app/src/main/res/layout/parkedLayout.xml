@@ -21,22 +21,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Day XX"
+            android:text="Parked Activities"
             android:id="@+id/textView"
             android:inputType="none"
             android:textSize="30dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:elegantTextHeight="false" />
+            android:elegantTextHeight="false"
+            android:layout_marginLeft="60dp" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:src="@drawable/plus"
-            android:background="#00628b"
-            android:tint="#ffffff"
-            android:layout_marginLeft="225dp" />
     </LinearLayout>
 
     <LinearLayout
