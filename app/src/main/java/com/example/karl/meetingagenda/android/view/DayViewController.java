@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,22 +31,6 @@ public class DayViewController implements View.OnFocusChangeListener {
 
         this.startTime = (EditText) view.view.findViewById(R.id.editText4);
 
-        this.startTime.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // hide virtual keyboard
-                    InputMethodManager imm = (InputMethodManager) Context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        startTime.setOnFocusChangeListener(focusHandler);
-
         //ListView listView =
 
         startTime.setOnEditorActionListener(editorHandler);
@@ -58,16 +43,24 @@ public class DayViewController implements View.OnFocusChangeListener {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             boolean handler = false;
+            EditText editText = (EditText) view.view.findViewById(R.id.editText4);
+            if (actionId == EditorInfo.IME_ACTION_DONE){
+                System.out.println("TIME: " + editText.getText());
+                InputMethodManager imm = (InputMethodManager) editText.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-            
+                imm.hideSoftInputFromInputMethod(editText.getWindowToken(),0);
 
-            return false;
+                handler = true;
+            }
+
+
+            return handler;
         }
     };
 
 
 
-    View.OnFocusChangeListener focusHandler = new View.OnFocusChangeListener() {
+/*    View.OnFocusChangeListener focusHandler = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             EditText editText = (EditText) v.findViewById(R.id.editText4);
@@ -79,7 +72,7 @@ public class DayViewController implements View.OnFocusChangeListener {
                 System.out.println("inte fokus, tid: " + editText.getText());
             }
         }
-};
+};*/
 
 
 
