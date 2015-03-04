@@ -26,11 +26,8 @@ public class ActivityView implements Observer {
 
         this.model.addObserver(this);
 
-        RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
-        radioGroup.getCheckedRadioButtonId();
-        RadioButton button = (RadioButton) view.findViewById(R.id.radioButton);
-        // Preselect to avoid case when no button is selected
-        button.setChecked(true);
+
+
 
 
 
