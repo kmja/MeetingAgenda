@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.karl.meetingagenda.R;
+import com.example.karl.meetingagenda.android.view.DayView;
+import com.example.karl.meetingagenda.android.view.DayViewController;
 
 
 import java.util.List;
@@ -17,6 +19,8 @@ import model.Day;
 public class DayActivity extends Activity {
 
     AgendaModel model;
+    DayView view;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,8 @@ public class DayActivity extends Activity {
         List<Day> days = model.getDays();
         Day day1 = days.get(0);
 
+        view = new DayView(findViewById(R.id.day_layout), this.model);
+        DayViewController dayViewController = new DayViewController(this.view,this.model);
 
 
         // setup on swipe listeners and on click for add activity

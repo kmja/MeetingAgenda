@@ -42,17 +42,6 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         savebtn.setOnClickListener(clickHandler);
 
 
-        
-
-
-
-
-
-
-
-
-
-
 }
 
     View.OnClickListener clickHandler = new View.OnClickListener() {
