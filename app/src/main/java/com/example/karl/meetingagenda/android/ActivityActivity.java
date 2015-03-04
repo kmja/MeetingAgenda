@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.ActivityView;
@@ -11,7 +13,7 @@ import com.example.karl.meetingagenda.android.view.ActivityView;
 import model.AgendaModel;
 
 
-public class ActivityActivity extends android.app.Activity {
+public class ActivityActivity extends android.app.Activity implements View.OnClickListener {
 
     ActivityView view;
     AgendaModel model;
@@ -27,16 +29,37 @@ public class ActivityActivity extends android.app.Activity {
         // Create the Activity View
         this.view = new ActivityView(findViewById(R.id.activity_layout),this.model);
 
+        // Setup on click listeners for save and cancel activity
+
+
+        Button cancelbtn = (Button) findViewById(R.id.button);
+        Button savebtn = (Button) findViewById(R.id.button2);
+
+        cancelbtn.setOnClickListener(clickHandler);
+        savebtn.setOnClickListener(clickHandler);
 
 
 
 
 
 
-    }
 
 
-    @Override
+
+
+
+
+}
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            System.out.println(v.getId());
+
+        }
+    };
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_, menu);
@@ -56,5 +79,13 @@ public class ActivityActivity extends android.app.Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
