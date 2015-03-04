@@ -1,5 +1,9 @@
 package com.example.karl.meetingagenda.android.view;
 
+import android.provider.MediaStore;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import model.AgendaModel;
 
 /**
@@ -15,7 +19,13 @@ public class ActivityViewController {
         this.view = view;
         this.model = model;
 
-        // Set up onClick listeners
+        // Set up radio buttons
+
+
+
+
+
+
 
 
 

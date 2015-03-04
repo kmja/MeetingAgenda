@@ -28,6 +28,10 @@ public class DayActivity extends Activity {
 
 
 
+        // setup on swipe listeners and on click for add activity
+
+
+
     }
 
 
