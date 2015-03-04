@@ -21,7 +21,6 @@ public class ActivityViewController implements RadioGroup.OnCheckedChangeListene
     public ActivityViewController(ActivityView view, AgendaModel model) {
         this.view = view;
         this.model = model;
-
         // Set up radio buttons
 
 

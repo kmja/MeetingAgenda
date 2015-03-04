@@ -30,7 +30,6 @@ public class ActivityView implements Observer {
 
 
 
-
     }
 
 
