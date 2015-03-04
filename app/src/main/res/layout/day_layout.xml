@@ -6,7 +6,7 @@
     android:id="@+id/day_layout">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -14,56 +14,72 @@
         android:layout_alignParentStart="true"
         android:textAlignment="center"
         android:id="@+id/linearLayout"
-        android:padding="16dp"
-        android:background="#00628b"
         android:gravity="center_horizontal">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#00628b">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Day XX"
-                android:id="@+id/textView"
-                android:inputType="none"
-                android:textSize="30dp"
+                android:text="Day 1"
+                android:id="@+id/textView3"
                 android:textStyle="bold"
+                android:textSize="30dp"
                 android:textColor="#ffffff"
-                android:elegantTextHeight="false"
-                android:gravity="center_horizontal" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Start:"
-                    android:id="@+id/textView3"
-                    android:textColor="#ffffff" />
-
-                <EditText
-                    android:layout_width="53dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="time"
-                    android:ems="10"
-                    android:id="@+id/editText4"
-                    android:text="08:00"
-                    android:textColor="#ffffff" />
-
-            </LinearLayout>
-
+                android:gravity="center_horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ffffff"
+            android:padding="1dp"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#eb7260"
+            android:padding="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Day starts:"
+                android:id="@+id/textView4"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:gravity="center_vertical" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="3"
+                android:id="@+id/editText4"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:backgroundTint="#ffffff"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#000000"
+            android:padding="1dp"></LinearLayout>
     </LinearLayout>
 
     <LinearLayout
