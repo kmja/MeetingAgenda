@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.ActivityView;
+import com.example.karl.meetingagenda.android.view.ActivityViewController;
 
 import model.AgendaModel;
 
@@ -29,6 +30,8 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         // Create the Activity View
         this.view = new ActivityView(findViewById(R.id.activity_layout),this.model);
 
+        ActivityViewController activityViewController = new ActivityViewController(this.view,this.model);
+
         // Setup on click listeners for save and cancel activity
 
 
@@ -39,6 +42,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         savebtn.setOnClickListener(clickHandler);
 
 
+        
 
 
 

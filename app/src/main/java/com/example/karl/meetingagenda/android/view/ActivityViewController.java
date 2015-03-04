@@ -50,7 +50,7 @@ public class ActivityViewController implements RadioGroup.OnCheckedChangeListene
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
             System.out.println(group.getCheckedRadioButtonId());
-            
+            System.out.println("Radio BUTTON");
 
         }
 
