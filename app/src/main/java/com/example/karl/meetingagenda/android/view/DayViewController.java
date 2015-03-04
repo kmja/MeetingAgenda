@@ -1,8 +1,10 @@
 package com.example.karl.meetingagenda.android.view;
 
+import android.content.Context;
 import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +29,20 @@ public class DayViewController implements View.OnFocusChangeListener {
         this.model = model;
 
         this.startTime = (EditText) view.view.findViewById(R.id.editText4);
+
+        this.startTime.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // hide virtual keyboard
+                    InputMethodManager imm = (InputMethodManager) Context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         startTime.setOnFocusChangeListener(focusHandler);
 
