@@ -13,10 +13,11 @@ public class AgendaModel extends Observable {
 	 * adds create and add a new day to model with starting time (hours and minutes)
 	 */
 	public Day addDay(int startHour, int startMin) {
-		Day d = new Day(startHour, startMin);
-		days.add(d);
-		return d;
-	}
+        Day d = new Day(startHour, startMin);
+        days.add(d);
+        return d;
+    }
+
 	
 	/**
 	 * add an activity to model

@@ -9,6 +9,7 @@ public class Day extends Observable {
 	/**
 	 * the start of the agenda in min, counted from midnight
 	 */
+
 	int start;
 	
 	List<Activity> activities = new ArrayList<Activity>();
