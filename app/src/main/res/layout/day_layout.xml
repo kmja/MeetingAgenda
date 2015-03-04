@@ -71,7 +71,8 @@
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:backgroundTint="#ffffff"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:imeOptions="actionDone"/>
         </LinearLayout>
 
         <LinearLayout
