@@ -6,14 +6,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.karl.meetingagenda.R;
+import com.example.karl.meetingagenda.android.view.ActivityView;
+
+import model.AgendaModel;
 
 
 public class ActivityActivity extends android.app.Activity {
+
+    ActivityView view;
+    AgendaModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
+
+        // create the model. This is temporary since were going to pass model from other activites here
+        this.model = new AgendaModel().getModelWithExampleData();
+
+        // Create the Activity View
+        this.view = new ActivityView(findViewById(R.id.activity_layout),this.model);
+
+
+
+
+
+
+
     }
 
 
