@@ -72,7 +72,8 @@
                 android:textStyle="bold"
                 android:backgroundTint="#ffffff"
                 android:textSize="16dp"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"
+                android:cursorVisible="false"/>
         </LinearLayout>
 
         <LinearLayout
