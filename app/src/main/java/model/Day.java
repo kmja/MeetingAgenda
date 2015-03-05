@@ -10,7 +10,6 @@ public class Day extends Observable implements Serializable {
 	/**
 	 * the start of the agenda in min, counted from midnight
 	 */
-
 	int start;
 	
 	List<Activity> activities = new ArrayList<Activity>();
