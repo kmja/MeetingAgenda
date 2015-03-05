@@ -1,16 +1,21 @@
 package com.example.karl.meetingagenda.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.ActivityView;
 import com.example.karl.meetingagenda.android.view.ActivityViewController;
 
+import model.Activity;
 import model.AgendaModel;
 
 
@@ -18,6 +23,13 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
 
     ActivityView view;
     AgendaModel model;
+    Button savebtn;
+    Button cancelbtn;
+    EditText name;
+    EditText length;
+    RadioGroup radioGroup;
+    EditText description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +47,18 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         // Setup on click listeners for save and cancel activity
 
 
-        Button cancelbtn = (Button) findViewById(R.id.button);
-        Button savebtn = (Button) findViewById(R.id.button2);
+        cancelbtn = (Button) findViewById(R.id.button);
+        savebtn = (Button) findViewById(R.id.button2);
 
         cancelbtn.setOnClickListener(clickHandler);
         savebtn.setOnClickListener(clickHandler);
+
+        // Setup input fields
+
+        name = (EditText) findViewById(R.id.editText);
+        length = (EditText) findViewById(R.id.editText2);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        description = (EditText) findViewById(R.id.editText3);
 
 
 }
@@ -47,7 +66,21 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println(v.getId());
+            if(v == cancelbtn){
+                Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
+                // Put extra
+                startActivity(intent);
+            }
+            else if(v == savebtn){
+                RadioButton radiobtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+                int radioID = Integer.valueOf(String.valueOf(radiobtn.getContentDescription()));
+                model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
+                        Integer.valueOf(String.valueOf(length.getText())), radioID));
+
+
+                Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
+                startActivity(intent);
+            }
 
         }
     };

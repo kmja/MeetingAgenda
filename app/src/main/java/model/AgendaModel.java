@@ -1,13 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class AgendaModel extends Observable {
+public class AgendaModel extends Observable implements Serializable {
 
 	List<Day> days = new ArrayList<Day>();
 	List<Activity> parkedActivities = new ArrayList<Activity>();
+
 
 	/**
 	 * adds create and add a new day to model with starting time (hours and minutes)

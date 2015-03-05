@@ -50,26 +50,31 @@ public class DayViewController implements View.OnFocusChangeListener {
             private static final int swipe_velocity_threshold = 100;
             @Override
             public boolean onDown(MotionEvent e) {
+                System.out.println("DOWN");
                 return false;
             }
 
             @Override
             public void onShowPress(MotionEvent e) {
+                System.out.println("SHOW PRESS");
 
             }
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
+                System.out.println("SINGLE TAP UP");
                 return false;
             }
 
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                System.out.println("SCROLL");
                 return false;
             }
 
             @Override
             public void onLongPress(MotionEvent e) {
+                System.out.println("LONG PRESS");
 
             }
 
@@ -88,7 +93,8 @@ public class DayViewController implements View.OnFocusChangeListener {
 
                         }
                         else{
-                            //SWIPE LEFT
+                            // SWIPE LEFT
+                            System.out.println("SWIPE LEFT");
                         }
                         result = true;
 

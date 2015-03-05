@@ -2,6 +2,7 @@ package com.example.karl.meetingagenda.android.view;
 
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -21,9 +22,6 @@ public class ActivityViewController implements RadioGroup.OnCheckedChangeListene
     public ActivityViewController(ActivityView view, AgendaModel model) {
         this.view = view;
         this.model = model;
-
-
-        System.out.println("HEJ");
 
 
 
@@ -52,10 +50,14 @@ public class ActivityViewController implements RadioGroup.OnCheckedChangeListene
             System.out.println(group.getCheckedRadioButtonId());
             System.out.println("Radio BUTTON");
 
+
+
         }
 
 
     };
+
+
 
 
 
