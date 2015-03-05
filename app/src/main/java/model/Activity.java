@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Observable;
 
-public class Activity extends Observable {
+public class Activity extends Observable implements Serializable {
 
 	
 	// The possible types of the activity
