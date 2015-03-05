@@ -16,7 +16,7 @@ import model.AgendaModel;
 
 public class DayView implements Observer {
 
-    View view;
+    public View view;
     AgendaModel model;
 
 

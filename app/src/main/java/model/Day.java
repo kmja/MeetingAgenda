@@ -99,5 +99,8 @@ public class Day extends Observable implements Serializable {
 		notifyObservers("ActivityMoved");
 	}
 	
+    public List<Activity> getActivities(){
+        return activities;
+    }
 
 }

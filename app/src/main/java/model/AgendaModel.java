@@ -10,6 +10,8 @@ public class AgendaModel extends Observable implements Serializable {
 	List<Day> days = new ArrayList<Day>();
 	List<Activity> parkedActivities = new ArrayList<Activity>();
 
+    int currentday = 0;
+
 
 	/**
 	 * adds create and add a new day to model with starting time (hours and minutes)
@@ -98,6 +100,13 @@ public class AgendaModel extends Observable implements Serializable {
     }
 
 
+    public int getCurrentDay(){
+        return currentday;
+    }
 
+
+    public void setCurrentDay(int i){
+        this.currentday = i;
+    }
 
 }
