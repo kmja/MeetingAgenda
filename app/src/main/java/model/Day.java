@@ -1,15 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class Day extends Observable {
+public class Day extends Observable implements Serializable {
 	 
 	/**
 	 * the start of the agenda in min, counted from midnight
 	 */
-
 	int start;
 	
 	List<Activity> activities = new ArrayList<Activity>();
