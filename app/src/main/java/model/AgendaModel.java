@@ -93,4 +93,7 @@ public class AgendaModel extends Observable implements Serializable {
         return this.days;
     }
 
+
+
+
 }

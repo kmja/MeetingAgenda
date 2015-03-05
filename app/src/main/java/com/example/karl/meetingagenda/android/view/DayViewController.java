@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import model.AgendaModel;
 /**
  * Created by fredrik-eliasson on 04/03/15.
  */
+
 public class DayViewController implements View.OnFocusChangeListener {
 
     DayView view;
@@ -43,6 +45,10 @@ public class DayViewController implements View.OnFocusChangeListener {
 
         ListView listView = (ListView) view.view.findViewById(R.id.listView);
 
+        String[] activityArr = new String[10];
+
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,this.model.getDays().)
 
 
         GestureDetector.OnGestureListener gestureHandler = new GestureDetector.OnGestureListener() {
