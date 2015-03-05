@@ -1,12 +1,12 @@
 package com.example.karl.meetingagenda.android.view;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.example.karl.meetingagenda.R;
 
+import java.lang.reflect.Array;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -27,9 +27,21 @@ public class ParkedView implements Observer {
 
         this.model.addObserver(this);
 
-        ListView parkedList = (ListView) view.findViewById(R.id.listView);
+        ListView listView = (ListView) view.findViewById(R.id.listView);
 
-        parkedList.
+        String[] parkedList = new String[model.getParkedActivities().size()];
+        for(int i=0; i<=parkedList.length; i++){
+            parkedList[i] = model.getParkedActivities().get(i).getName();
+
+        }
+
+
+
+
+        ArrayAdapter listAdapter = new ArrayAdapter<String>(this.view.getContext(), android.R.layout.simple_list_item_1, parkedList);
+
+
+        listView.setAdapter(listAdapter);
 
 
     }
