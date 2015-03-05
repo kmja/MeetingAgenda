@@ -68,17 +68,23 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         public void onClick(View v) {
             if(v == cancelbtn){
                 Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
-                // Put extra
+
+                intent.putExtra("model", model);
+
                 startActivity(intent);
             }
             else if(v == savebtn){
-                RadioButton radiobtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
-                int radioID = Integer.valueOf(String.valueOf(radiobtn.getContentDescription()));
+                // get user input and add to parked activities
+                RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+                int radioID = Integer.valueOf(String.valueOf(radioBtn.getContentDescription()));
                 model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
                         Integer.valueOf(String.valueOf(length.getText())), radioID));
 
 
                 Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
+
+                intent.putExtra("model", model);
+
                 startActivity(intent);
             }
 
