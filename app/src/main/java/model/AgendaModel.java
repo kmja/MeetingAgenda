@@ -48,7 +48,11 @@ public class AgendaModel extends Observable implements Serializable {
 		notifyObservers("ParkedActivityRemoved");
 		return act;
 	}
-	
+
+    public List<Activity> getParkedActivities(){
+        return this.parkedActivities;
+    }
+
 	/**
 	 * moves activity between the days, or day and parked activities.
 	 * to park activity you need to set the newday to null
