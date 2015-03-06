@@ -1,20 +1,39 @@
 package com.example.karl.meetingagenda.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.karl.meetingagenda.R;
+import com.example.karl.meetingagenda.android.view.ParkedView;
 
 import model.Activity;
+import model.AgendaModel;
 
 public class ParkedActivity extends android.app.Activity {
+
+    AgendaModel model;
+    ParkedView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parked_layout);
+
+        Intent intent = getIntent();
+        this.model = (AgendaModel) intent.getExtras().get("model");
+
+        // Create view and controller
+        //ParkedView parkedView = new ParkedView()
+
+
+        // load parkedactivities into listview.
+
+
+
+
     }
 
 

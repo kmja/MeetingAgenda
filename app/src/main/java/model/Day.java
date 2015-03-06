@@ -66,8 +66,12 @@ public class Day extends Observable implements Serializable {
 		if(position > activities.size()) {
 			position = activities.size();
 		}
-		activities.add(position, act);
-		setChanged();
+		if (position == -1){
+            activities.add(act);
+        }else {
+            activities.add(position, act);
+        }
+        setChanged();
 		notifyObservers("ActivityAdded");
 		return position;
 	}

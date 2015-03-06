@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
@@ -53,6 +54,7 @@ public class DayActivity extends Activity {
 
         // setup on swipe listeners and on click for add activity
         gestureDetector = new GestureDetector(this.view.view.getContext(),gestureHandler);
+
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -107,7 +109,15 @@ public class DayActivity extends Activity {
                         // SWIPE LEFT
                         System.out.println("SWIPE LEFT TO RIGHT");
                         // to avoid a left swipe when we are on the first screen, perhaps add parked acts here?
-                        if(currentday!=0){
+                        if(currentday==0) {
+                            Intent intent = new Intent(DayActivity.this,ParkedActivity.class);
+                            // put extra. model and currentday
+                            intent.putExtra("model",model);
+                            //intent.putExtra("day",currentday-1);
+                            startActivity(intent);
+
+                        }
+                        else if(currentday>0){
                         Intent intent = new Intent(DayActivity.this,DayActivity.class);
                         // put extra. model and currentday
                         intent.putExtra("model",model);
@@ -137,15 +147,6 @@ public class DayActivity extends Activity {
 
 
     };
-
-
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
