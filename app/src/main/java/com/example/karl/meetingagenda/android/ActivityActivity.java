@@ -29,6 +29,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
     EditText length;
     RadioGroup radioGroup;
     EditText description;
+    int currentday;
 
 
     @Override
@@ -37,7 +38,14 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         setContentView(R.layout.activity_layout);
 
         // create the model. This is temporary since were going to pass model from other activites here
-        this.model = new AgendaModel().getModelWithExampleData();
+        //this.model = new AgendaModel().getModelWithExampleData();
+
+        Intent intent = getIntent();
+        this.model = (AgendaModel) intent.getExtras().get("model");
+        this.currentday = (int) intent.getExtras().get("day");
+
+
+
 
         // Create the Activity View
         this.view = new ActivityView(findViewById(R.id.activity_layout),this.model);
@@ -60,8 +68,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         description = (EditText) findViewById(R.id.editText3);
 
-
-}
+    }
 
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
@@ -70,7 +77,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                 Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
 
                 intent.putExtra("model", model);
-
+                intent.putExtra("day",currentday);
                 startActivity(intent);
             }
             else if(v == savebtn){
@@ -80,11 +87,9 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                 model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
                         Integer.valueOf(String.valueOf(length.getText())), radioID));
 
-
                 Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
-
                 intent.putExtra("model", model);
-
+                intent.putExtra("day",currentday);
                 startActivity(intent);
             }
 

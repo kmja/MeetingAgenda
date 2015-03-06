@@ -42,7 +42,7 @@ public class DayViewController implements View.OnFocusChangeListener {
 
         // add gesture recognition for listview
 
-        ListView listView = (ListView) view.view.findViewById(R.id.listView);
+        /*ListView listView = (ListView) view.view.findViewById(R.id.listView);
 
         String[] activityArr = new String[this.model.getDays().get(0).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
@@ -52,65 +52,9 @@ public class DayViewController implements View.OnFocusChangeListener {
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this.view.view.getContext(),android.R.layout.simple_list_item_1,activityArr);
 
-        listView.setAdapter(arrayAdapter);
-
-        //gestureDetector = new GestureDetector(view.view.getContext(),gestureHandler);
-
-        //this.view.view.setOnTouchListener(touchListener);
+        listView.setAdapter(arrayAdapter);*/
 
     }
-    /*GestureDetector.SimpleOnGestureListener gestureHandler = new GestureDetector.SimpleOnGestureListener() {
-        private static final int swipe_threshold = 100;
-        private static final int swipe_velocity_threshold = 100;
-        @Override
-        public boolean onDown(MotionEvent e) {
-            System.out.println("DOWN");
-            return true;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            float diffx = e2.getX()-e1.getX();
-            float diffy = e2.getY()-e1.getY();
-
-            boolean result = false;
-
-            if(Math.abs(diffx)>Math.abs(diffy)){
-                if(Math.abs(diffx) > swipe_threshold && Math.abs(velocityX)> swipe_velocity_threshold ){
-                    if(diffx<0){
-                        // SWIPE RIGHT
-                        System.out.println("SWIPED RIGHT TO LEFT");
-                    }
-                    else{
-                        // SWIPE LEFT
-                        System.out.println("SWIPE LEFT TO RIGHT");
-                    }
-                    result = true;
-
-                }
-
-            }
-
-            return false;
-        }
-    };
-
-    View.OnTouchListener touchListener = new View.OnTouchListener()  {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            System.out.println("onTouch");
-
-            if (gestureDetector.onTouchEvent(event))
-            {
-                System.out.println("OnToucheEVNET");
-                return true;
-            }
-            return false;
-        }
-
-
-    };
-*/
 
 
     EditText.OnEditorActionListener editorHandler = new TextView.OnEditorActionListener() {

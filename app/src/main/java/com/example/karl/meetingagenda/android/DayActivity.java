@@ -1,6 +1,7 @@
 package com.example.karl.meetingagenda.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -8,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.DayView;
@@ -24,30 +27,52 @@ public class DayActivity extends Activity {
     AgendaModel model;
     DayView view;
     GestureDetector gestureDetector;
+    int currentday = 0;
+    List<Day> days;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_layout);
-        model = new AgendaModel().getModelWithExampleData();
-        List<Day> days = model.getDays();
-        Day day1 = days.get(0);
 
-        this.view = new DayView(findViewById(R.id.day_layout), this.model);
+        // check if intent getextras exist
+        Intent intent = getIntent();
+        if(intent.getExtras() == null){
+            // Means app is started for first time so create new agendamodel
+            this.model = new AgendaModel().getModelWithExampleData();
+
+        }else{
+            this.model = (AgendaModel) intent.getExtras().get("model");
+            currentday = (int) intent.getExtras().get("day");
+        }
+
+        this.days = model.getDays();
+
+        this.view = new DayView(findViewById(R.id.day_layout), this.model,currentday);
         DayViewController dayViewController = new DayViewController(this.view,this.model);
-
 
         // setup on swipe listeners and on click for add activity
         gestureDetector = new GestureDetector(this.view.view.getContext(),gestureHandler);
 
-
         ListView listView = (ListView) findViewById(R.id.listView);
 
+        Button addactivity = (Button) findViewById(R.id.button3);
+
+        addactivity.setOnClickListener(clickHandler);
         listView.setOnTouchListener(touchListener);
-
         view.view.setOnTouchListener(touchListener);
-
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+                Intent intent = new Intent(DayActivity.this, ActivityActivity.class);
+                intent.putExtra("model", model);
+                intent.putExtra("day",currentday);
+                startActivity(intent);
+            }
+    };
 
     GestureDetector.SimpleOnGestureListener gestureHandler = new GestureDetector.SimpleOnGestureListener() {
         private static final int swipe_threshold = 100;
@@ -70,11 +95,25 @@ public class DayActivity extends Activity {
                     if(diffx<0){
                         // SWIPE RIGHT
                         System.out.println("SWIPED RIGHT TO LEFT");
-
+                        if(currentday+1!=days.size()){
+                        Intent intent = new Intent(DayActivity.this,DayActivity.class);
+                        // put extra. model and currentday
+                        intent.putExtra("model",model);
+                        intent.putExtra("day",currentday+1);
+                        startActivity(intent);
+                        }
                     }
                     else{
                         // SWIPE LEFT
                         System.out.println("SWIPE LEFT TO RIGHT");
+                        // to avoid a left swipe when we are on the first screen, perhaps add parked acts here?
+                        if(currentday!=0){
+                        Intent intent = new Intent(DayActivity.this,DayActivity.class);
+                        // put extra. model and currentday
+                        intent.putExtra("model",model);
+                        intent.putExtra("day",currentday-1);
+                        startActivity(intent);
+                        }
                     }
                     result = true;
                 }
@@ -90,7 +129,7 @@ public class DayActivity extends Activity {
 
             if (gestureDetector.onTouchEvent(event))
             {
-                System.out.println("OnToucheEVNET");
+                System.out.println("OnTouchEVENT");
                 return true;
             }
             return false;
@@ -98,6 +137,13 @@ public class DayActivity extends Activity {
 
 
     };
+
+
+
+
+
+
+
 
 
 
