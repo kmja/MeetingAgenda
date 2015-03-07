@@ -113,7 +113,7 @@ public class DayActivity extends Activity {
                             Intent intent = new Intent(DayActivity.this,ParkedActivity.class);
                             // put extra. model and currentday
                             intent.putExtra("model",model);
-                            //intent.putExtra("day",currentday-1);
+                            intent.putExtra("day",currentday);
                             startActivity(intent);
 
                         }

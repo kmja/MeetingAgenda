@@ -14,7 +14,7 @@ import model.AgendaModel;
 /**
  * Created by fredrik-eliasson on 04/03/15.
  */
-public class ActivityViewController implements RadioGroup.OnCheckedChangeListener {
+public class ActivityViewController  {
 
     AgendaModel model;
     ActivityView view;
@@ -24,89 +24,31 @@ public class ActivityViewController implements RadioGroup.OnCheckedChangeListene
         this.view = view;
         this.model = model;
 
-
-
-        // Set up radio buttons
-
-        RadioGroup radioGroup = (RadioGroup) view.view.findViewById(R.id.radioGroup);
-        radioGroup.getCheckedRadioButtonId();
-        //RadioButton button = (RadioButton) view.view.findViewById(R.id.radioButton1);
-        // Preselect to avoid case when no button is selected
-        //button.setChecked(true);
-
-        //radioGroup.setOnCheckedChangeListener(checkedHandler);
-
-
         for(int i = 1; i<=4;i++){
             // create radiobuttons
             String btnName = "radioButton" + i;
             int btnid= view.view.getResources().getIdentifier(btnName, "id", view.view.getContext().getPackageName());
             RadioButton rbtn = (RadioButton) view.view.findViewById(btnid);
-            rbtn.setOnCheckedChangeListener(checkedChangeListener);
+            rbtn.setOnClickListener(clickListener);
 
         }
-
-
     }
 
-    RadioButton.OnCheckedChangeListener checkedChangeListener = new RadioButton.OnCheckedChangeListener(){
+
+    View.OnClickListener clickListener = new View.OnClickListener(){
 
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-            for(int i = 1; i<=2;i++){
-                String groupname = "radioGroup" + i;
-                int groupid= view.view.getResources().getIdentifier(groupname, "id", view.view.getContext().getPackageName());
-                RadioGroup rgroup = (RadioGroup) view.view.findViewById(groupid);
-                rgroup.clearCheck();
-            }
-
-            buttonView.setChecked(true);
-
-            /*for(int i = 1; i<=4;i++){
+        public void onClick(View v) {
+            for (int i = 1; i <= 4; i++) {
                 // create radiobuttons
-
                 String btnName = "radioButton" + i;
-
-                int btnid= view.view.getResources().getIdentifier(btnName, "id", view.view.getContext().getPackageName());
+                int btnid = view.view.getResources().getIdentifier(btnName, "id", view.view.getContext().getPackageName());
                 RadioButton rbtn = (RadioButton) view.view.findViewById(btnid);
-                rbtn.setChecked(false);
-                System.out.println("ButtonName: " + btnName + " ischecked= " + rbtn.isChecked());
-
-*/
-
-                /*if(rbtn == buttonView){
+                if(v.getId() == rbtn.getId()){
                     rbtn.setChecked(true);
-                }else{rbtn.setChecked(false);}*/
+                }else{rbtn.setChecked(false);}
             }
-
-    };
-
-
-    RadioGroup.OnCheckedChangeListener checkedHandler = new RadioGroup.OnCheckedChangeListener(){
-
-
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-            System.out.println(group.getCheckedRadioButtonId());
-            System.out.println("Radio BUTTON");
-
-
-
         }
-
-
     };
 
-
-
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-
-    }
-}
+   }

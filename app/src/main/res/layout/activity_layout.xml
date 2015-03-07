@@ -177,34 +177,27 @@
                         android:orientation="vertical"
                         android:id="@+id/linearLayout6">
 
-                        <RadioGroup
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:id="@+id/radioGroup1">
-
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Presentation"
-                                android:id="@+id/radioButton1"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:layout_marginBottom="10dp"
-                                android:buttonTint="#00628b"
-                                android:checked="false"
-                                android:clickable="false"
-                                android:contentDescription="1" />
-
-                            <RadioButton
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Group Work"
-                            android:id="@+id/radioButton3"
+                            android:text="Presentation"
+                            android:id="@+id/radioButton1"
                             android:textColor="#000000"
                             android:textSize="18dp"
-                            android:buttonTint="#29aba4"
-                            android:contentDescription="2" />
-                        </RadioGroup>
+                            android:layout_marginBottom="10dp"
+                            android:buttonTint="#00628b"
+                            android:checked="false"
+                            android:contentDescription="1" />
+
+                        <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Group Work"
+                        android:id="@+id/radioButton3"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+                        android:buttonTint="#29aba4"
+                        android:contentDescription="2" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -215,32 +208,26 @@
                         android:layout_toRightOf="@+id/linearLayout6"
                         android:layout_toEndOf="@+id/linearLayout6">
 
-                        <RadioGroup
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:id="@+id/radioGroup2">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Discussion"
+                            android:id="@+id/radioButton2"
+                            android:textColor="#000000"
+                            android:textSize="18dp"
+                            android:buttonTint="#eb7260"
+                            android:contentDescription="3"
+                            android:layout_marginBottom="10dp" />
 
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Break"
-                                android:id="@+id/radioButton4"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:buttonTint="#ffffff"
-                                android:contentDescription="4" />
-
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Discussion"
-                                android:id="@+id/radioButton2"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:layout_marginBottom="10dp"
-                                android:buttonTint="#eb7260"
-                                android:contentDescription="3" />
-                        </RadioGroup>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Break"
+                            android:id="@+id/radioButton4"
+                            android:textColor="#000000"
+                            android:textSize="18dp"
+                            android:buttonTint="#ffffff"
+                            android:contentDescription="4" />
 
                     </LinearLayout>
 
