@@ -29,6 +29,20 @@ public class DayView implements Observer {
         this.model.addObserver(this);
 
         EditText start_time = (EditText) view.findViewById(R.id.editText4);
+        int minutes = model.getDays().get(currentday).getStart();
+        int hours = minutes/60;
+        String startTime = "";
+        if(hours<10) {
+            startTime = "0"+String.valueOf(hours)+":";
+        }
+        else{
+            startTime = String.valueOf(hours)+":";
+        }
+        if((minutes-hours*60)<10){
+            startTime = startTime+"0";
+        }
+        startTime = startTime+String.valueOf(minutes-hours*60);
+        start_time.setText(startTime);
 
         TextView daytitle = (TextView) view.findViewById(R.id.textView3);
         daytitle.setText("Day " + String.valueOf(currentday+1));

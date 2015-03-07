@@ -68,6 +68,8 @@ public class DayViewController implements View.OnFocusChangeListener {
 
                 imm.hideSoftInputFromWindow(editText.getWindowToken(),0);
 
+
+
                 handler = true;
 
             }

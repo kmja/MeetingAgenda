@@ -103,6 +103,13 @@ public class DayActivity extends Activity {
                         intent.putExtra("model",model);
                         intent.putExtra("day",currentday+1);
                         startActivity(intent);
+                        }else{
+                            model.addDay(8,0);
+                            Intent intent = new Intent(DayActivity.this,DayActivity.class);
+                            // put extra. model and currentday
+                            intent.putExtra("model",model);
+                            intent.putExtra("day",currentday+1);
+                            startActivity(intent);
                         }
                     }
                     else{
