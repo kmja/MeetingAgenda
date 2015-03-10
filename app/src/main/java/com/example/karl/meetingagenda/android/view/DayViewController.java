@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 
+import model.Activity;
 import model.AgendaModel;
 
 /**
@@ -27,15 +29,21 @@ public class DayViewController implements View.OnFocusChangeListener {
     AgendaModel model;
     EditText startTime;
     GestureDetector gestureDetector;
+    ListView listView;
+    int currentday;
 
-    public DayViewController(DayView view, AgendaModel model){
+    public DayViewController(DayView view, AgendaModel model,int currentday){
 
         this.view = view;
         this.model = model;
+        this.currentday = currentday;
 
         this.startTime = (EditText) view.view.findViewById(R.id.editText4);
 
         //ListView listView =
+
+        this.listView = (ListView) view.view.findViewById(R.id.listView);
+        listView.setOnItemClickListener(itemclickhandler);
 
         // add listeners to edittext
         startTime.setOnEditorActionListener(editorHandler);
@@ -55,6 +63,24 @@ public class DayViewController implements View.OnFocusChangeListener {
         listView.setAdapter(arrayAdapter);*/
 
     }
+
+    AdapterView.OnItemClickListener itemclickhandler = new android.widget.AdapterView.OnItemClickListener() {
+
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // handle clicked item.
+            Activity act = model.getDays().get(currentday).getActivities().get(position);
+
+            // use a field like selectedactivity to know wich activity should be loaded in overlay
+
+            // set visibility of the overlay to visible
+            View overlay = (View) view.findViewById(R.id.overlay);
+            overlay.setVisibility(View.VISIBLE);
+
+
+        }
+    };
 
 
     EditText.OnEditorActionListener editorHandler = new TextView.OnEditorActionListener() {

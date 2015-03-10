@@ -19,7 +19,6 @@ public class ActivityViewController  {
     AgendaModel model;
     ActivityView view;
 
-
     public ActivityViewController(ActivityView view, AgendaModel model) {
         this.view = view;
         this.model = model;
@@ -30,13 +29,10 @@ public class ActivityViewController  {
             int btnid= view.view.getResources().getIdentifier(btnName, "id", view.view.getContext().getPackageName());
             RadioButton rbtn = (RadioButton) view.view.findViewById(btnid);
             rbtn.setOnClickListener(clickListener);
-
         }
     }
 
-
     View.OnClickListener clickListener = new View.OnClickListener(){
-
         @Override
         public void onClick(View v) {
             for (int i = 1; i <= 4; i++) {

@@ -30,6 +30,8 @@ public class DayActivity extends Activity {
     GestureDetector gestureDetector;
     int currentday = 0;
     List<Day> days;
+    Button addactivity;
+    Button parkactivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +52,18 @@ public class DayActivity extends Activity {
         this.days = model.getDays();
 
         this.view = new DayView(findViewById(R.id.day_layout), this.model,currentday);
-        DayViewController dayViewController = new DayViewController(this.view,this.model);
+        DayViewController dayViewController = new DayViewController(this.view,this.model,currentday);
 
         // setup on swipe listeners and on click for add activity
         gestureDetector = new GestureDetector(this.view.view.getContext(),gestureHandler);
 
-
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        Button addactivity = (Button) findViewById(R.id.button3);
+        this.addactivity = (Button) findViewById(R.id.button3);
+        this.parkactivity = (Button) findViewById(R.id.button6);
 
         addactivity.setOnClickListener(clickHandler);
+        parkactivity.setOnClickListener(clickHandler);
         listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
     }
@@ -68,11 +71,16 @@ public class DayActivity extends Activity {
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Intent intent;
+            if (v == parkactivity){
+                    intent  = new Intent(DayActivity.this,ParkedActivity.class);
+                }else{
+                    intent = new Intent(DayActivity.this, ActivityActivity.class);
+                }
 
-                Intent intent = new Intent(DayActivity.this, ActivityActivity.class);
-                intent.putExtra("model", model);
-                intent.putExtra("day",currentday);
-                startActivity(intent);
+            intent.putExtra("model", model);
+            intent.putExtra("day",currentday);
+            startActivity(intent);
             }
     };
 
