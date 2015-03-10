@@ -1,27 +1,45 @@
 package com.example.karl.meetingagenda.android.view;
 
+import android.app.Activity;
+import android.content.ClipData;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import android.os.Bundle;
+import android.app.ListActivity;
+
 import com.example.karl.meetingagenda.R;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import model.AgendaModel;
+import model.Day;
 
 /**
  * Created by fredrik-eliasson on 03/03/15.
  */
 
-public class DayView implements Observer {
+public class DayView extends ListActivity implements Observer {
 
     public View view;
     AgendaModel model;
 
+
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+
+        // 1. pass context and data to the custom adapter
+        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(0).getActivities());
+
+        //2. setListAdapter
+        setListAdapter(adapter);
+    }
 
     public DayView(View view, AgendaModel model, int currentday){
         this.view = view;
@@ -44,8 +62,11 @@ public class DayView implements Observer {
         startTime = startTime+String.valueOf(minutes-hours*60);
         start_time.setText(startTime);
 
-        TextView daytitle = (TextView) view.findViewById(R.id.textView3);
-        daytitle.setText("Day " + String.valueOf(currentday+1));
+        TextView dayTitle = (TextView) view.findViewById(R.id.textView3);
+        dayTitle.setText("Day " + String.valueOf(currentday+1));
+
+
+
 
 
         ListView listView = (ListView) view.findViewById(R.id.listView);

@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.example.karl.meetingagenda.R;
+import com.example.karl.meetingagenda.android.view.CustomAdapter;
 import com.example.karl.meetingagenda.android.view.DayView;
 import com.example.karl.meetingagenda.android.view.DayViewController;
 
@@ -32,6 +33,20 @@ public class DayActivity extends Activity {
     List<Day> days;
     Button addactivity;
     Button parkactivity;
+
+    public void onCreate() {
+
+        setContentView(R.layout.day_layout);
+
+        // 1. pass context and data to the custom adapter
+        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(currentday).getActivities());
+
+        // 2. Get ListView from activity_main.xml
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        // 3. setListAdapter
+        listView.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
