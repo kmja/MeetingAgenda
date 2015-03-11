@@ -31,8 +31,10 @@ public class DayActivity extends Activity {
     GestureDetector gestureDetector;
     int currentday = 0;
     List<Day> days;
-    Button addactivity;
-    Button parkactivity;
+    Button addactivitybtn;
+    Button parkbtn;
+    Button cancelbtn;
+    Button editbtn;
 
     public void onCreate() {
 
@@ -58,14 +60,12 @@ public class DayActivity extends Activity {
         if(intent.getExtras() == null){
             // Means app is started for first time so create new agendamodel
             this.model = new AgendaModel().getModelWithExampleData();
-
-        }else{
+        }else
+        {
             this.model = (AgendaModel) intent.getExtras().get("model");
             currentday = (int) intent.getExtras().get("day");
         }
-
         this.days = model.getDays();
-
         this.view = new DayView(findViewById(R.id.day_layout), this.model,currentday);
         DayViewController dayViewController = new DayViewController(this.view,this.model,currentday);
 
@@ -74,11 +74,16 @@ public class DayActivity extends Activity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        this.addactivity = (Button) findViewById(R.id.button3);
-        this.parkactivity = (Button) findViewById(R.id.button6);
+        // setup buttons
+        this.addactivitybtn = (Button) findViewById(R.id.button3);
+        this.parkbtn = (Button) findViewById(R.id.button6);
+        this.editbtn = (Button) findViewById(R.id.button5);
+        this.cancelbtn = (Button) findViewById(R.id.button4);
 
-        addactivity.setOnClickListener(clickHandler);
-        parkactivity.setOnClickListener(clickHandler);
+        addactivitybtn.setOnClickListener(clickHandler);
+        parkbtn.setOnClickListener(clickHandler);
+        editbtn.setOnClickListener(clickHandler);
+        cancelbtn.setOnClickListener(clickHandler);
         listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
     }
@@ -87,16 +92,23 @@ public class DayActivity extends Activity {
         @Override
         public void onClick(View v) {
             Intent intent;
-            if (v == parkactivity){
+            if (v == parkbtn){
                     intent  = new Intent(DayActivity.this,ParkedActivity.class);
-                }else{
-                    intent = new Intent(DayActivity.this, ActivityActivity.class);
-                }
+                    model.addParkedActivity(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()));
+            }else if(v == editbtn){
+                    // load activity view with selected activity
+                    intent = new Intent(DayActivity.this,ActivityActivity.class);
+                    // send additional information in intent!
+                    // intent.putextra("activity",activity);
 
+            }
+            else{
+                    intent = new Intent(DayActivity.this, ActivityActivity.class);
+            }
             intent.putExtra("model", model);
             intent.putExtra("day",currentday);
             startActivity(intent);
-            }
+        }
     };
 
     GestureDetector.SimpleOnGestureListener gestureHandler = new GestureDetector.SimpleOnGestureListener() {
@@ -145,7 +157,6 @@ public class DayActivity extends Activity {
                             intent.putExtra("model",model);
                             intent.putExtra("day",currentday);
                             startActivity(intent);
-
                         }
                         else if(currentday>0){
                         Intent intent = new Intent(DayActivity.this,DayActivity.class);

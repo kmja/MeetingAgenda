@@ -82,7 +82,16 @@ public class DayView extends ListActivity implements Observer {
         listView.setAdapter(arrayAdapter);
 
 
+        // load stuff into overlay
+        TextView activityname = (TextView) findViewById(R.id.textView5);
+        TextView actinfo = (TextView) findViewById(R.id.textView6);
+        TextView actdescription = (TextView) findViewById(R.id.textView7);
 
+        model.Activity selectedactivity = this.model.getDays().get(currentday).getActivities().get(this.model.getSelectedActivity());
+
+        activityname.setText(selectedactivity.getName());
+        actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
+        actdescription.setText(selectedactivity.getDescription());
 
     }
 

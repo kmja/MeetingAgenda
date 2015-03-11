@@ -1,6 +1,7 @@
 package com.example.karl.meetingagenda.android.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -10,11 +11,14 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
+import com.example.karl.meetingagenda.android.ActivityActivity;
+import com.example.karl.meetingagenda.android.ParkedActivity;
 
 import model.Activity;
 import model.AgendaModel;
@@ -31,6 +35,7 @@ public class DayViewController implements View.OnFocusChangeListener {
     GestureDetector gestureDetector;
     ListView listView;
     int currentday;
+    Button cancelbtn;
 
     public DayViewController(DayView view, AgendaModel model,int currentday){
 
@@ -41,28 +46,28 @@ public class DayViewController implements View.OnFocusChangeListener {
         this.startTime = (EditText) view.view.findViewById(R.id.editText4);
 
         //ListView listView =
-
         this.listView = (ListView) view.view.findViewById(R.id.listView);
         listView.setOnItemClickListener(itemclickhandler);
 
         // add listeners to edittext
         startTime.setOnEditorActionListener(editorHandler);
 
-        // add gesture recognition for listview
-
-        /*ListView listView = (ListView) view.view.findViewById(R.id.listView);
-
-        String[] activityArr = new String[this.model.getDays().get(0).getActivities().size()];
-        for(int i = 0;i<activityArr.length;i++){
-
-            activityArr[i] = this.model.getDays().get(0).getActivities().get(i).getName();
-        }
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this.view.view.getContext(),android.R.layout.simple_list_item_1,activityArr);
-
-        listView.setAdapter(arrayAdapter);*/
+        cancelbtn = (Button) view.findViewById(R.id.button4);
+        cancelbtn.setOnClickListener(clickHandler);
 
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v == cancelbtn){
+                // hide overlay
+                View overlay = (View) view.findViewById(R.id.overlay);
+                overlay.setVisibility(View.GONE);
+            }
+        }
+    };
+
 
     AdapterView.OnItemClickListener itemclickhandler = new android.widget.AdapterView.OnItemClickListener() {
 
@@ -72,6 +77,7 @@ public class DayViewController implements View.OnFocusChangeListener {
             // handle clicked item.
             Activity act = model.getDays().get(currentday).getActivities().get(position);
 
+            model.setSelectedact(position);
             // use a field like selectedactivity to know wich activity should be loaded in overlay
 
             // set visibility of the overlay to visible
@@ -94,18 +100,12 @@ public class DayViewController implements View.OnFocusChangeListener {
 
                 imm.hideSoftInputFromWindow(editText.getWindowToken(),0);
 
-
-
                 handler = true;
 
             }
-
             return handler;
         }
     };
-
-
-
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
