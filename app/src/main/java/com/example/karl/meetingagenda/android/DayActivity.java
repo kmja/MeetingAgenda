@@ -36,24 +36,13 @@ public class DayActivity extends Activity {
     Button cancelbtn;
     Button editbtn;
 
-    public void onCreate() {
-
-        setContentView(R.layout.day_layout);
-
-        // 1. pass context and data to the custom adapter
-        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(currentday).getActivities());
-
-        // 2. Get ListView from activity_main.xml
-        ListView listView = (ListView) findViewById(R.id.listView);
-
-        // 3. setListAdapter
-        listView.setAdapter(adapter);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_layout);
+
+
 
         // check if intent getextras exist
         Intent intent = getIntent();
@@ -68,6 +57,8 @@ public class DayActivity extends Activity {
         this.days = model.getDays();
         this.view = new DayView(findViewById(R.id.day_layout), this.model,currentday);
         DayViewController dayViewController = new DayViewController(this.view,this.model,currentday);
+
+
 
         // setup on swipe listeners and on click for add activity
         gestureDetector = new GestureDetector(this.view.view.getContext(),gestureHandler);

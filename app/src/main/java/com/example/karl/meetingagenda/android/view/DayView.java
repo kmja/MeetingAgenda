@@ -20,26 +20,25 @@ import java.util.Observer;
 
 import model.AgendaModel;
 import model.Day;
+import com.example.karl.meetingagenda.android.view.CustomAdapter;
 
 /**
  * Created by fredrik-eliasson on 03/03/15.
  */
 
-public class DayView extends ListActivity implements Observer {
+public class DayView extends Activity implements Observer {
 
     public View view;
     AgendaModel model;
 
+    // 1. pass context and data to the custom adapter
+    CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
 
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    // 2. Get ListView from activity_main.xml
+    ListView listView = (ListView) findViewById(R.id.listView);
 
-        // 1. pass context and data to the custom adapter
-        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(0).getActivities());
-
-        //2. setListAdapter
-        setListAdapter(adapter);
-    }
+    // 3. setListAdapter
+    listView.setAdapter(adapter);
 
     public DayView(View view, AgendaModel model, int currentday){
         this.view = view;
