@@ -84,10 +84,8 @@ public class DayViewController implements View.OnFocusChangeListener {
             View overlay = (View) view.findViewById(R.id.overlay);
             overlay.setVisibility(View.VISIBLE);
 
-
         }
     };
-
 
     EditText.OnEditorActionListener editorHandler = new TextView.OnEditorActionListener() {
         @Override

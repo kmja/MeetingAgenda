@@ -31,19 +31,12 @@ public class DayView extends Activity implements Observer {
     public View view;
     AgendaModel model;
 
-    // 1. pass context and data to the custom adapter
-    CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
-
-    // 2. Get ListView from activity_main.xml
-    ListView listView = (ListView) findViewById(R.id.listView);
-
-    // 3. setListAdapter
-    listView.setAdapter(adapter);
 
     public DayView(View view, AgendaModel model, int currentday){
         this.view = view;
         this.model = model;
         this.model.addObserver(this);
+
 
         EditText start_time = (EditText) view.findViewById(R.id.editText4);
         int minutes = model.getDays().get(currentday).getStart();
@@ -65,10 +58,16 @@ public class DayView extends Activity implements Observer {
         dayTitle.setText("Day " + String.valueOf(currentday+1));
 
 
+        // 1. pass context and data to the custom adapter
+        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
+
+        // 2. Get ListView from activity_main.xml
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        // 3. setListAdapter
+        listView.setAdapter(adapter);
 
 
-
-        ListView listView = (ListView) view.findViewById(R.id.listView);
 
         String[] activityArr = new String[this.model.getDays().get(currentday).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
