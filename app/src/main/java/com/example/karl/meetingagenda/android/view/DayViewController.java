@@ -36,6 +36,7 @@ public class DayViewController implements View.OnFocusChangeListener {
     ListView listView;
     int currentday;
     Button cancelbtn;
+    View overlay;
 
     public DayViewController(DayView view, AgendaModel model,int currentday){
 
@@ -52,7 +53,10 @@ public class DayViewController implements View.OnFocusChangeListener {
         // add listeners to edittext
         startTime.setOnEditorActionListener(editorHandler);
 
-        cancelbtn = (Button) view.findViewById(R.id.button4);
+        this.overlay = (View) view.view.findViewById(R.id.overlay);
+
+
+        cancelbtn = (Button) view.view.findViewById(R.id.button4);
         cancelbtn.setOnClickListener(clickHandler);
 
     }
@@ -62,7 +66,7 @@ public class DayViewController implements View.OnFocusChangeListener {
         public void onClick(View v) {
             if (v == cancelbtn){
                 // hide overlay
-                View overlay = (View) view.findViewById(R.id.overlay);
+                //View overlay = (View) view.findViewById(R.id.overlay);
                 overlay.setVisibility(View.GONE);
             }
         }
@@ -81,7 +85,8 @@ public class DayViewController implements View.OnFocusChangeListener {
             // use a field like selectedactivity to know wich activity should be loaded in overlay
 
             // set visibility of the overlay to visible
-            View overlay = (View) view.findViewById(R.id.overlay);
+            //View overlay = (View) view.findViewById(R.id.overlay);
+
             overlay.setVisibility(View.VISIBLE);
 
         }

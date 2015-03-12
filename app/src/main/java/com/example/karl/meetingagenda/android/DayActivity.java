@@ -1,10 +1,12 @@
 package com.example.karl.meetingagenda.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -20,6 +22,7 @@ import com.example.karl.meetingagenda.android.view.DayView;
 import com.example.karl.meetingagenda.android.view.DayViewController;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 import model.AgendaModel;
 import model.Day;
@@ -41,6 +44,10 @@ public class DayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_layout);
 
+        Context context = this.getApplicationContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+
         // check if intent getextras exist
         Intent intent = getIntent();
         if(intent.getExtras() == null){
@@ -52,7 +59,7 @@ public class DayActivity extends Activity {
             currentday = (int) intent.getExtras().get("day");
         }
         this.days = model.getDays();
-        this.view = new DayView(findViewById(R.id.day_layout), this.model,model.getCurrentDay());
+        this.view = new DayView(findViewById(R.id.day_layout), this.model,model.getCurrentDay(),inflater);
         DayViewController dayViewController = new DayViewController(this.view,this.model,model.getCurrentDay());
 
 
@@ -66,12 +73,10 @@ public class DayActivity extends Activity {
         this.addactivitybtn = (Button) findViewById(R.id.button3);
         this.parkbtn = (Button) findViewById(R.id.button6);
         this.editbtn = (Button) findViewById(R.id.button5);
-        this.cancelbtn = (Button) findViewById(R.id.button4);
 
         addactivitybtn.setOnClickListener(clickHandler);
         parkbtn.setOnClickListener(clickHandler);
         editbtn.setOnClickListener(clickHandler);
-        cancelbtn.setOnClickListener(clickHandler);
         listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
     }

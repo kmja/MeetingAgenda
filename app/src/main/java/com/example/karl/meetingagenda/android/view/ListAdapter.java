@@ -23,9 +23,9 @@ public class ListAdapter extends BaseAdapter
     List<Activity> activities;
 
 
-    public ListAdapter(Context context,List<Activity> activities){
-
-        this.inflater = LayoutInflater.from(context);
+    public ListAdapter(Context context,List<Activity> activities, LayoutInflater layoutInflater){
+        layoutInflater.getContext();
+        this.inflater = layoutInflater;
         this.activities = activities;
 
     }
@@ -53,7 +53,7 @@ public class ListAdapter extends BaseAdapter
             view = inflater.inflate(R.layout.row_layout,parent,false);
             holder = new ViewHolder();
             holder.name = (TextView)view.findViewById(R.id.rowTitle);
-            holder.length = (TextView)view.findViewById(R.id.rowTime);
+            holder.time = (TextView)view.findViewById(R.id.rowTime);
             view.setTag(holder);
         }else{
             view = convertView;
@@ -61,11 +61,12 @@ public class ListAdapter extends BaseAdapter
         }
 
         holder.name.setText(activities.get(position).getName());
-        holder.length.setText(activities.get(position).getLength());
+        holder.time.setText(String.valueOf(activities.get(position).getLength()));
+        //holder.length.setText(activities.get(position).getLength());
 
         return view;
     }
     private class ViewHolder{
-        public TextView name, length;
+        public TextView name, time;
     }
 }
