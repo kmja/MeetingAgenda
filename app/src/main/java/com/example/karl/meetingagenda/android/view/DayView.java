@@ -5,7 +5,9 @@ import android.content.ClipData;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class DayView extends Activity implements Observer {
 
 
         EditText start_time = (EditText) view.findViewById(R.id.editText4);
-        int minutes = model.getDays().get(currentday).getStart();
+        int minutes = model.getDays().get(model.getCurrentDay()).getStart();
         int hours = minutes/60;
         String startTime = "";
         if(hours<10) {
@@ -57,9 +59,8 @@ public class DayView extends Activity implements Observer {
         TextView dayTitle = (TextView) view.findViewById(R.id.textView3);
         dayTitle.setText("Day " + String.valueOf(currentday+1));
 
-
         // 1. pass context and data to the custom adapter
-        CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
+        CustomAdapter adapter = new CustomAdapter(this.getApplicationContext(), model.getDays().get(model.getCurrentDay()).getActivities());
 
         // 2. Get ListView from activity_main.xml
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -67,17 +68,20 @@ public class DayView extends Activity implements Observer {
         // 3. setListAdapter
         listView.setAdapter(adapter);
 
-
-
-        String[] activityArr = new String[this.model.getDays().get(currentday).getActivities().size()];
+        String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
-
-            activityArr[i] = this.model.getDays().get(currentday).getActivities().get(i).getName();
+            activityArr[i] = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
         }
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this.view.getContext(),android.R.layout.simple_list_item_1,activityArr);
+        // create a new adapter with dual lines
 
-        listView.setAdapter(arrayAdapter);
+        //ListAdapter adapter1 = new SimpleCursorAdapter(this.view.getContext(),android.R.layout.simple_list_item_2,)
+
+        com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this.getApplicationContext(),this.model.getDays().get(this.model.getCurrentDay()).getActivities());
+
+        //ArrayAdapter arrayAdapter = new ArrayAdapter(this.view.getContext(),android.R.layout.simple_list_item_1,activityArr);
+
+        listView.setAdapter(listAdapter);
 
 
         // load stuff into overlay
@@ -90,7 +94,6 @@ public class DayView extends Activity implements Observer {
         activityname.setText(selectedactivity.getName());
         actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
         actdescription.setText(selectedactivity.getDescription());
-
     }
 
 

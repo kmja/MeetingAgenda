@@ -36,13 +36,10 @@ public class DayActivity extends Activity {
     Button cancelbtn;
     Button editbtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_layout);
-
-
 
         // check if intent getextras exist
         Intent intent = getIntent();
@@ -55,8 +52,8 @@ public class DayActivity extends Activity {
             currentday = (int) intent.getExtras().get("day");
         }
         this.days = model.getDays();
-        this.view = new DayView(findViewById(R.id.day_layout), this.model,currentday);
-        DayViewController dayViewController = new DayViewController(this.view,this.model,currentday);
+        this.view = new DayView(findViewById(R.id.day_layout), this.model,model.getCurrentDay());
+        DayViewController dayViewController = new DayViewController(this.view,this.model,model.getCurrentDay());
 
 
 
@@ -123,7 +120,8 @@ public class DayActivity extends Activity {
                     if(diffx<0){
                         // SWIPE RIGHT
                         System.out.println("SWIPED RIGHT TO LEFT");
-                        if(currentday+1!=days.size()){
+                        if(model.getCurrentDay()+1!=days.size()){
+                        model.setCurrentDay(model.getCurrentDay()+1);
                         Intent intent = new Intent(DayActivity.this,DayActivity.class);
                         // put extra. model and currentday
                         intent.putExtra("model",model);
@@ -132,6 +130,7 @@ public class DayActivity extends Activity {
                         }else{
                             model.addDay(8,0);
                             Intent intent = new Intent(DayActivity.this,DayActivity.class);
+                            model.setCurrentDay(model.getCurrentDay()+1);
                             // put extra. model and currentday
                             intent.putExtra("model",model);
                             intent.putExtra("day",currentday+1);
@@ -151,6 +150,7 @@ public class DayActivity extends Activity {
                         }
                         else if(currentday>0){
                         Intent intent = new Intent(DayActivity.this,DayActivity.class);
+                        model.setCurrentDay(model.getCurrentDay()-1);
                         // put extra. model and currentday
                         intent.putExtra("model",model);
                         intent.putExtra("day",currentday-1);

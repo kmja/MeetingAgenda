@@ -75,7 +75,7 @@ public class DayViewController implements View.OnFocusChangeListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // handle clicked item.
-            Activity act = model.getDays().get(currentday).getActivities().get(position);
+            Activity act = model.getDays().get(model.getCurrentDay()).getActivities().get(position);
 
             model.setSelectedact(position);
             // use a field like selectedactivity to know wich activity should be loaded in overlay
