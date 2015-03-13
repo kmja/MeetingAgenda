@@ -69,19 +69,15 @@ public class DayView extends Activity implements Observer {
 
         // 3. setListAdapter
         //listView.setAdapter(adapter);
-
         String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
             activityArr[i] = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
         }
 
-        // create a new adapter with dual lines
 
-        //ListAdapter adapter1 = new SimpleCursorAdapter(this.view.getContext(),android.R.layout.simple_list_item_2,)
 
         com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
 
-        //ArrayAdapter arrayAdapter = new ArrayAdapter(this.view.getContext(),android.R.layout.simple_list_item_1,activityArr);
 
         listView.setAdapter(listAdapter);
 
@@ -90,11 +86,17 @@ public class DayView extends Activity implements Observer {
         TextView actinfo = (TextView) view.findViewById(R.id.textView6);
         TextView actdescription = (TextView) view.findViewById(R.id.textView7);
 
-        model.Activity selectedactivity = this.model.getDays().get(currentday).getActivities().get(this.model.getSelectedActivity());
 
-        activityname.setText(selectedactivity.getName());
-        actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
-        actdescription.setText(selectedactivity.getDescription());
+        // if there are activities for that day
+        if (this.model.getDays().get(this.model.getCurrentDay()).getActivities().size() != 0){
+            model.Activity selectedactivity = this.model.getDays().get(model.getCurrentDay()).getActivities().get(this.model.getSelectedActivity());
+            activityname.setText(selectedactivity.getName());
+            actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
+            actdescription.setText(selectedactivity.getDescription());
+
+        }
+
+
     }
 
     @Override

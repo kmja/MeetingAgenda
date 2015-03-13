@@ -122,5 +122,10 @@ public class AgendaModel extends Observable implements Serializable {
         this.selectedact = i;
     }
 
+    public void removeActivity(int currentday, int selectedactivity){
+        List<Activity> activities = this.getDays().get(currentday).getActivities();
+        activities.remove(selectedactivity);
+
+    }
 
 }

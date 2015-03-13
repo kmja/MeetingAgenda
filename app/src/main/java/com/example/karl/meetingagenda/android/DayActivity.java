@@ -88,6 +88,7 @@ public class DayActivity extends Activity {
             if (v == parkbtn){
                     intent  = new Intent(DayActivity.this,ParkedActivity.class);
                     model.addParkedActivity(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()));
+                    model.removeActivity(model.getCurrentDay(),model.getSelectedActivity());
             }else if(v == editbtn){
                     // load activity view with selected activity
                     intent = new Intent(DayActivity.this,ActivityActivity.class);
