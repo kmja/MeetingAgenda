@@ -69,8 +69,6 @@ public class ListAdapter extends BaseAdapter
         int activityStart = 480; // måste hämta från currentday istället för att hårdkoda.
         for(int i=0; i>position; i++){
             activityStart += activities.get(i).getLength(); //funkar inte efter första activityn. Ingen aning varför. Nu på slutet verkar det inte funka någonstans.
-            System.out.println("Adding activity "+activities.get(position).getName()+": "+activities.get(i).getLength()+" minutes.");
-            System.out.println("Position = "+position);
         }
         // Convert minutes into hour:minute format
         int hours = activityStart/60;
@@ -85,6 +83,7 @@ public class ListAdapter extends BaseAdapter
             startTime = startTime+"0";
         }
         startTime = startTime+String.valueOf(activityStart-hours*60);
+        System.out.println(startTime);
         holder.time.setText(startTime);
 
         // Setting background color based on activity type
