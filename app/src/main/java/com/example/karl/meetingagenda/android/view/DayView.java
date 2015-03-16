@@ -3,12 +3,14 @@ package com.example.karl.meetingagenda.android.view;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -65,21 +67,31 @@ public class DayView extends Activity implements Observer {
         //CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
 
         // 2. Get ListView from activity_main.xml
-        ListView listView = (ListView) view.findViewById(R.id.listView);
+        //ListView listView = (ListView) view.findViewById(R.id.listView);
 
         // 3. setListAdapter
         //listView.setAdapter(adapter);
+        ArrayList<String> acts = new ArrayList<String>();
         String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
-            activityArr[i] = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
+            String actname = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
+            activityArr[i] = actname;
+            acts.add(actname);
         }
 
-
+        com.example.karl.meetingagenda.android.view.DynamicListView dynamicListView = new DynamicListView(view.getContext());
 
         com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
 
+        dynamicListView.setAdapter(listAdapter);
 
-        listView.setAdapter(listAdapter);
+        RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
+        rl.addView(dynamicListView);
+
+        //listView.setAdapter(listAdapter);
+        //dynamicListView.init(view.getContext());
+
+        dynamicListView.setCheeseList(acts);
 
         // load stuff into overlay
         TextView activityname = (TextView) view.findViewById(R.id.textView5);
@@ -93,10 +105,7 @@ public class DayView extends Activity implements Observer {
             activityname.setText(selectedactivity.getName());
             actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
             actdescription.setText(selectedactivity.getDescription());
-
         }
-
-
     }
 
     @Override

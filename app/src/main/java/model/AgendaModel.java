@@ -62,7 +62,7 @@ public class AgendaModel extends Observable implements Serializable {
 	 * to move a parked activity to let's say first day you set oldday to null
 	 * and newday to first day instance
 	 */
-	public void moveActivity(Day oldday, int oldposition, Day newday, int newposition) {
+	public void moveActivityOld(Day oldday, int oldposition, Day newday, int newposition) {
 		if(oldday != null && oldday == newday) {
 			oldday.moveActivity(oldposition,newposition);
 		} else if(oldday == null && newday != null) {
@@ -78,6 +78,7 @@ public class AgendaModel extends Observable implements Serializable {
 		setChanged();
 		notifyObservers();
 	};
+
 	
 	/**
 	 * you can use this method to create some test data and test your implementation
