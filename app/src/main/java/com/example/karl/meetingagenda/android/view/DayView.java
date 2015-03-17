@@ -22,7 +22,9 @@ import android.app.ListActivity;
 
 import com.example.karl.meetingagenda.R;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -73,27 +75,38 @@ public class DayView extends Activity implements Observer {
 
         // 3. setListAdapter
         //listView.setAdapter(adapter);
+        ArrayList<Map<String,Object>> items = new ArrayList<Map<String,Object>>();
+        HashMap<String,Object> item = new HashMap<String,Object>();
         ArrayList<String> acts = new ArrayList<String>();
         String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
         for(int i = 0;i<activityArr.length;i++){
             String actname = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
             activityArr[i] = actname;
             acts.add(actname);
+            item.put("name"+i,actname);
+            System.out.println("acti:  " + item.get("name"));
+            item.put("id",i);
+            items.add(item);
         }
+
+        // testar att printa ut hashmapen
+        int j = 0;
+        for(Map m: items){
+            System.out.println(m.get("name" + j));
+            j++;
+
+        }
+
 
         com.example.karl.meetingagenda.android.view.DynamicListView dynamicListView = new DynamicListView(view.getContext());
 
-        // drag N drop listviewe
+        // drag N drop listview
         DragNDropListView dragNDropListView = new DragNDropListView(view.getContext());
         //DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),R.layout.row_layout,);
 
-
-
         com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
         //dynamicListView.setAdapter(listAdapter);
-        dragNDropListView.setAdapter(listAdapter);
-
-
+        //dragNDropListView.setAdapter(listAdapter);
 
         RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
         rl.addView(dragNDropListView);
@@ -103,7 +116,12 @@ public class DayView extends Activity implements Observer {
         dragNDropListView.setOnItemClickListener(clickListener);
 
 
-        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),acts,R.layout.row_layout,String[]{"name"},int[]{R.id.rowTitle,R.id.handler});
+        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),items,R.layout.row_layout,new String[]{"name"},new int[]{R.id.rowTitle},R.id.rowTime);
+
+        //dragNDropListView.setAdapter(dragNDropSimpleAdapter);
+
+        dragNDropListView.setDragNDropAdapter(dragNDropSimpleAdapter);
+
 
         //listView.setAdapter(listAdapter);
         //dynamicListView.init(view.getContext());
