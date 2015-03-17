@@ -6,6 +6,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -81,17 +83,32 @@ public class DayView extends Activity implements Observer {
 
         com.example.karl.meetingagenda.android.view.DynamicListView dynamicListView = new DynamicListView(view.getContext());
 
-        com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
+        // drag N drop listviewe
+        DragNDropListView dragNDropListView = new DragNDropListView(view.getContext());
+        //DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),R.layout.row_layout,);
 
-        dynamicListView.setAdapter(listAdapter);
+
+
+        com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
+        //dynamicListView.setAdapter(listAdapter);
+        dragNDropListView.setAdapter(listAdapter);
+
+
 
         RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
-        rl.addView(dynamicListView);
+        rl.addView(dragNDropListView);
+
+        dragNDropListView.setOnItemDragNDropListener(itemDragListener);
+
+        dragNDropListView.setOnItemClickListener(clickListener);
+
+
+        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),acts,R.layout.row_layout,String[]{"name"},int[]{R.id.rowTitle,R.id.handler});
 
         //listView.setAdapter(listAdapter);
         //dynamicListView.init(view.getContext());
 
-        dynamicListView.setCheeseList(acts);
+        //dynamicListView.setCheeseList(acts);
 
         // load stuff into overlay
         TextView activityname = (TextView) view.findViewById(R.id.textView5);
@@ -112,4 +129,27 @@ public class DayView extends Activity implements Observer {
     public void update(Observable observable, Object data) {
 
     }
+
+    DragNDropListView.OnItemDragNDropListener itemDragListener = new DragNDropListView.OnItemDragNDropListener() {
+        @Override
+        public void onItemDrag(DragNDropListView parent, View view, int position, long id) {
+
+        }
+
+        @Override
+        public void onItemDrop(DragNDropListView parent, View view, int startPosition, int endPosition, long id) {
+
+        }
+    };
+
+    AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            System.out.println("CLICK");
+        }
+        // on adapter view
+
+    };
+
 }

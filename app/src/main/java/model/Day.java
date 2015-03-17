@@ -75,7 +75,6 @@ public class Day extends Observable implements Serializable {
 		notifyObservers("ActivityAdded");
 		return position;
 	}
-	
 	/**
 	 * removes an activity from specific position
 	 * this method will be called when needed from the model
@@ -87,7 +86,6 @@ public class Day extends Observable implements Serializable {
 		notifyObservers("ActivityRemoved");
 		return act;
 	}
-	
 	/**
 	 * moves activity inside one day
 	 * this method will be called when needed from the model
