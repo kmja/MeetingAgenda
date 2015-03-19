@@ -10,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -32,6 +33,8 @@ import java.util.Observer;
 import model.AgendaModel;
 import model.Day;
 import com.example.karl.meetingagenda.android.view.CustomAdapter;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by fredrik-eliasson on 03/03/15.
@@ -68,6 +71,36 @@ public class DayView extends Activity implements Observer {
         TextView dayTitle = (TextView) view.findViewById(R.id.textView3);
         dayTitle.setText("Day " + String.valueOf(currentday+1));
 
+        TextView presentationShare = (TextView) view.findViewById(R.id.presentationShare);
+        TextView groupShare = (TextView) view.findViewById(R.id.groupShare);
+        TextView discussionShare = (TextView) view.findViewById(R.id.discussionShare);
+        TextView breakShare = (TextView) view.findViewById(R.id.breakShare);
+
+        //Create list of types to loop through
+        List<TextView> typeList = new ArrayList<>();
+        typeList.add(presentationShare);
+        typeList.add(groupShare);
+        typeList.add(discussionShare);
+        typeList.add(breakShare);
+
+        //loopa genom typerna, getta aktiviteter av typen delat på totala aktiviteter. Set weight till den andelen
+        //Note: types är fortfarande 1 lägre än de borde vara. Varför? Activities på dag 2 är dessutom satta till 0 båda två,
+        //oavsett vad man säger i AgendaModel
+        List<model.Activity> activities = model.getDays().get(model.getCurrentDay()).getActivities();
+        for(int i=0;i<=3;i++) {
+            int typeCount = 0;
+            for(int k=0;k<activities.size();k++){
+                if(activities.get(k).getType()==i){
+                    System.out.println("TYPE HIT: "+activities.get(k).getType());
+                    typeCount++;
+                }
+            }
+            Float typeShare = (float) typeCount/activities.size();
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, typeShare);
+            typeList.get(i).setLayoutParams(param);
+        }
         // 1. pass context and data to the custom adapter
         //CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
 

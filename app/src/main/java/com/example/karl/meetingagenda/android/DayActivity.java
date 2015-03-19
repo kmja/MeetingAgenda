@@ -38,6 +38,8 @@ public class DayActivity extends Activity {
     Button parkbtn;
     Button cancelbtn;
     Button editbtn;
+    Button arrowLeft;
+    Button arrowRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class DayActivity extends Activity {
         this.addactivitybtn = (Button) findViewById(R.id.button3);
         this.parkbtn = (Button) findViewById(R.id.button6);
         this.editbtn = (Button) findViewById(R.id.button5);
+        //this.arrowLeft = (Button) findViewById(R.id.);
+        //this.arrowRight = (Button) findViewById(R.id.);
 
         addactivitybtn.setOnClickListener(clickHandler);
         parkbtn.setOnClickListener(clickHandler);

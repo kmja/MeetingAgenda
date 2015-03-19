@@ -93,9 +93,9 @@ public class AgendaModel extends Observable implements Serializable {
 		model.addActivity(new Activity("Idea 1 discussion","Discussing the results of idea 1",15,2),d,3);
 		model.addActivity(new Activity("Coffee break","Time for some coffee",20,3),d,4);
 
-        Day day = model.addDay(8,0);
-        model.addActivity(new Activity("Basketball","Play basketball",20,0),day,2);
-        model.addActivity(new Activity("Paintball","Play paintball",20,0),day,3);
+        Day day = model.addDay(7,45);
+        model.addActivity(new Activity("Basketball","Play basketball",20,0),day,1);
+        model.addActivity(new Activity("Paintball","Play paintball",20,0),day,2);
 
         model.addParkedActivity(new Activity("Business Time", "It's Time for Business",25,2));
         model.addParkedActivity(new Activity("Relax, Relax", "Take It Eeeeeeeaaaassyyyyyy...",45,4));

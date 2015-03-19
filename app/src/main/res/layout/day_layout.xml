@@ -81,6 +81,7 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:weightSum="1.0"
             android:paddingTop="1dp"
             android:paddingBottom="1dp">
 
@@ -88,28 +89,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/presentationShare"
-                android:layout_weight="0.25"
                 android:background="#00628b" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/groupShare"
-                android:layout_weight="0.25"
                 android:background="#29aba4" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/discussionShare"
-                android:layout_weight="0.25"
                 android:background="#eb7260" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/breakShare"
-                android:layout_weight="0.25"
                 android:background="#ffffff" />
         </LinearLayout>
     </LinearLayout>
