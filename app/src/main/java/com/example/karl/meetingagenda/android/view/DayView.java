@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -40,7 +41,7 @@ public class DayView extends Activity implements Observer {
 
     public View view;
     AgendaModel model;
-
+    DragNDropListView dragNDropListView;
 
     public DayView(View view, AgendaModel model, int currentday, LayoutInflater layoutInflater){
         this.view = view;
@@ -76,62 +77,46 @@ public class DayView extends Activity implements Observer {
         // 3. setListAdapter
         //listView.setAdapter(adapter);
         ArrayList<Map<String,Object>> items = new ArrayList<Map<String,Object>>();
-        HashMap<String,Object> item = new HashMap<String,Object>();
         ArrayList<String> acts = new ArrayList<String>();
         String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
+
+        // create the from array for adapter
+        //String[] from = new String[activityArr.length];
+
         for(int i = 0;i<activityArr.length;i++){
+            HashMap<String,Object> item = new HashMap<String,Object>();
             String actname = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
+            String time = String.valueOf(this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getLength());
             activityArr[i] = actname;
             acts.add(actname);
-            item.put("name"+i,actname);
+            item.put("name",actname);
+            item.put("time",time);
             System.out.println("acti:  " + item.get("name"));
-            item.put("id",i);
+            //item.put("id",i);
             items.add(item);
-        }
-
-        // testar att printa ut hashmapen
-        int j = 0;
-        for(Map m: items){
-            System.out.println(m.get("name" + j));
-            j++;
-
+            //from[i] = "name" + i;
         }
 
 
-        com.example.karl.meetingagenda.android.view.DynamicListView dynamicListView = new DynamicListView(view.getContext());
+        String[] from = new String[]{"name","time"};
 
         // drag N drop listview
-        DragNDropListView dragNDropListView = new DragNDropListView(view.getContext());
-        //DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),R.layout.row_layout,);
+        //this.dragNDropListView =  (DragNDropListView) view.findViewById(R.id.listView);
 
-        com.example.karl.meetingagenda.android.view.ListAdapter listAdapter = new com.example.karl.meetingagenda.android.view.ListAdapter(this,this.model.getDays().get(this.model.getCurrentDay()).getActivities(),layoutInflater);
-        //dynamicListView.setAdapter(listAdapter);
-        //dragNDropListView.setAdapter(listAdapter);
+        //RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
+        //rl.addView(dragNDropListView);
 
-        RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
-        rl.addView(dragNDropListView);
+        //dragNDropListView.setOnItemDragNDropListener(itemDragListener);
+        //dragNDropListView.setOnItemClickListener(clickListener);
+        //DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),items,R.layout.row_layout,from,new int[]{R.id.rowTitle,R.id.rowTime},R.id.rowTime);
+        //dragNDropListView.setDragNDropAdapter(dragNDropSimpleAdapter);
 
-        dragNDropListView.setOnItemDragNDropListener(itemDragListener);
-
-        dragNDropListView.setOnItemClickListener(clickListener);
-
-
-        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.getContext(),items,R.layout.row_layout,new String[]{"name"},new int[]{R.id.rowTitle},R.id.rowTime);
-
-        //dragNDropListView.setAdapter(dragNDropSimpleAdapter);
-
-        dragNDropListView.setDragNDropAdapter(dragNDropSimpleAdapter);
-
-
-        //listView.setAdapter(listAdapter);
-        //dynamicListView.init(view.getContext());
-
-        //dynamicListView.setCheeseList(acts);
 
         // load stuff into overlay
         TextView activityname = (TextView) view.findViewById(R.id.textView5);
         TextView actinfo = (TextView) view.findViewById(R.id.textView6);
         TextView actdescription = (TextView) view.findViewById(R.id.textView7);
+
 
 
         // if there are activities for that day
@@ -151,12 +136,13 @@ public class DayView extends Activity implements Observer {
     DragNDropListView.OnItemDragNDropListener itemDragListener = new DragNDropListView.OnItemDragNDropListener() {
         @Override
         public void onItemDrag(DragNDropListView parent, View view, int position, long id) {
-
+            System.out.println("DRAGGING");
         }
 
         @Override
         public void onItemDrop(DragNDropListView parent, View view, int startPosition, int endPosition, long id) {
-
+            // Dropping Change position of activity in model
+            System.out.println("DROPPING");
         }
     };
 

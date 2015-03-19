@@ -91,12 +91,12 @@ public class Day extends Observable implements Serializable {
 	 * this method will be called when needed from the model
 	 * don't call it directly
 	 */
-	void moveActivity(int oldPosition, int newPosition) {
+	public void moveActivity(int oldPosition, int newPosition) {
 		if(newPosition>oldPosition){
 			newPosition--;
 		}
 		Activity act = activities.remove(oldPosition);
-		activities.add(newPosition,act);
+		activities.add(newPosition+1,act);
 		setChanged();
 		notifyObservers("ActivityMoved");
 	}

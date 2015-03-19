@@ -77,7 +77,7 @@ public class DayActivity extends Activity {
         addactivitybtn.setOnClickListener(clickHandler);
         parkbtn.setOnClickListener(clickHandler);
         editbtn.setOnClickListener(clickHandler);
-        listView.setOnTouchListener(touchListener);
+        //listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
     }
 

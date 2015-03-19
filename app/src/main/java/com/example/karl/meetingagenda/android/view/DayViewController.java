@@ -14,14 +14,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.ActivityActivity;
 import com.example.karl.meetingagenda.android.ParkedActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import model.Activity;
 import model.AgendaModel;
+import model.Day;
 
 /**
  * Created by fredrik-eliasson on 04/03/15.
@@ -38,6 +44,7 @@ public class DayViewController implements View.OnFocusChangeListener {
     Button cancelbtn;
     View overlay;
 
+
     public DayViewController(DayView view, AgendaModel model,int currentday){
 
         this.view = view;
@@ -47,17 +54,50 @@ public class DayViewController implements View.OnFocusChangeListener {
         this.startTime = (EditText) view.view.findViewById(R.id.editText4);
 
         //ListView listView =
-        this.listView = (ListView) view.view.findViewById(R.id.listView);
-        listView.setOnItemClickListener(itemclickhandler);
+        //this.listView = (ListView) view.view.findViewById(R.id.listView);
+        //listView.setOnItemClickListener(itemclickhandler);
 
         // add listeners to edittext
         startTime.setOnEditorActionListener(editorHandler);
 
         this.overlay = (View) view.view.findViewById(R.id.overlay);
 
-
         cancelbtn = (Button) view.view.findViewById(R.id.button4);
         cancelbtn.setOnClickListener(clickHandler);
+
+
+        // instantiate dragdroplistview
+
+        ArrayList<Map<String,Object>> items = new ArrayList<Map<String,Object>>();
+        String[] activityArr = new String[this.model.getDays().get(this.model.getCurrentDay()).getActivities().size()];
+
+        //String[] from = new String[activityArr.length];
+
+        for(int i = 0;i<activityArr.length;i++){
+            HashMap<String,Object> item = new HashMap<String,Object>();
+            String actname = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
+            String time = String.valueOf(this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getLength());
+            activityArr[i] = actname;
+            item.put("name",actname);
+            item.put("time",time);
+            items.add(item);
+        }
+
+
+        String[] from = new String[]{"name","time"};
+
+        // drag N drop listview
+        DragNDropListView dragNDropListView = (DragNDropListView) view.view.findViewById(R.id.listView);
+
+        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.view.getContext(),items,R.layout.row_layout,from,new int[]{R.id.rowTitle,R.id.rowTime},R.id.rowTime);
+
+        //RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
+        //rl.addView(dragNDropListView);
+
+        dragNDropListView.setOnItemDragNDropListener(itemDragListener);
+        dragNDropListView.setOnItemClickListener(itemclickhandler);
+        //DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.view.getContext(),items,R.layout.row_layout,from,new int[]{R.id.rowTitle,R.id.rowTime},R.id.rowTime);
+        dragNDropListView.setDragNDropAdapter(dragNDropSimpleAdapter);
 
     }
 
@@ -72,6 +112,20 @@ public class DayViewController implements View.OnFocusChangeListener {
         }
     };
 
+    DragNDropListView.OnItemDragNDropListener itemDragListener = new DragNDropListView.OnItemDragNDropListener() {
+        @Override
+        public void onItemDrag(DragNDropListView parent, View view, int position, long id) {
+            System.out.println("DRAGGING");
+        }
+
+        @Override
+        public void onItemDrop(DragNDropListView parent, View view, int startPosition, int endPosition, long id) {
+            // Dropping Change position of activity in model
+            System.out.println("DROPPING" + "positions: " + startPosition + " " + endPosition);
+            model.getDays().get(model.getCurrentDay()).moveActivity(startPosition,endPosition);
+
+        }
+    };
 
     AdapterView.OnItemClickListener itemclickhandler = new android.widget.AdapterView.OnItemClickListener() {
 
