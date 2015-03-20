@@ -30,6 +30,10 @@ public class ParkedActivity extends android.app.Activity {
     TextView arrowRightbtn;
     Button addButton;
     int currentday;
+    View overlay;
+    Button cancel;
+    Button edit;
+    Button move;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,12 @@ public class ParkedActivity extends android.app.Activity {
         listView.setOnTouchListener(touchListener);
         parkedView.view.setOnTouchListener(touchListener);
 
+        // get overlay and buttons
+        this.overlay = findViewById(R.id.overlay);
+        this.edit = (Button) findViewById(R.id.button5);
+        this.move = (Button) findViewById(R.id.button6);
+        move.setText("Move");
+
         //setup arrow button
         this.arrowRightbtn = (TextView) findViewById(R.id.arrowRight);
         arrowRightbtn.setOnClickListener(clickHandler);
@@ -63,7 +73,7 @@ public class ParkedActivity extends android.app.Activity {
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent;
+            Intent intent = new Intent(ParkedActivity.this,ActivityActivity.class);
             if (v == arrowRightbtn){
                 intent = new Intent(ParkedActivity.this, DayActivity.class);
                 // put extra. model and currentday
@@ -76,7 +86,18 @@ public class ParkedActivity extends android.app.Activity {
                 intent.putExtra("model", model);
                 intent.putExtra("day", model);
                 startActivity(intent);
+
             }
+            else if (v == move){
+                intent.putExtra("model",model);
+                model.addActivity(model.getParkedActivities().get(model.getSelectedParked()),model.getDays().get(0),-1);
+                model.removeParkedActivity(model.getSelectedParked());
+            }
+            else if(v == edit){
+                intent.putExtra("model",model);
+                setIntent(intent);
+            }
+
 
         }
     };
