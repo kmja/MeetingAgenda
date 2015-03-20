@@ -111,7 +111,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                 
                 if (parked == true){
                     model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
-                            Integer.valueOf(String.valueOf(length.getText())));
+                            Integer.valueOf(String.valueOf(length.getText())), checkedtype));
                 }
                 else {
 
