@@ -21,6 +21,8 @@ import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.ActivityActivity;
 import com.example.karl.meetingagenda.android.ParkedActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +44,10 @@ public class DayViewController implements View.OnFocusChangeListener {
     ListView listView;
     int currentday;
     Button cancelbtn;
+    TextView nameText;
+    TextView infoText;
+    TextView descriptionText;
+
     View overlay;
 
 
@@ -64,6 +70,11 @@ public class DayViewController implements View.OnFocusChangeListener {
 
         cancelbtn = (Button) view.view.findViewById(R.id.button4);
         cancelbtn.setOnClickListener(clickHandler);
+
+        //Setup text fields in overlay
+        this.nameText = (TextView) view.view.findViewById(R.id.textView5);
+        this.infoText = (TextView) view.view.findViewById(R.id.textView6);
+        this.descriptionText = (TextView) view.view.findViewById(R.id.textView7);
 
 
         // instantiate dragdroplistview
@@ -140,6 +151,26 @@ public class DayViewController implements View.OnFocusChangeListener {
 
             // set visibility of the overlay to visible
             //View overlay = (View) view.findViewById(R.id.overlay);
+
+            //Setting up text on overlay
+            nameText.setText(act.getName());
+            String infoString = String.valueOf(act.getLength()+" min ");
+            if(act.getType()==1){
+                infoString = infoString+"presentation";
+            }
+            else if(act.getType()==2){
+                infoString = infoString+"group work";
+            }
+            else if(act.getType()==3){
+                infoString = infoString+"discussion";
+            }
+            else if(act.getType()==4){
+                infoString = infoString+"break";
+            }
+            infoText.setText(infoString);
+
+            descriptionText.setText(act.getDescription());
+
 
             overlay.setVisibility(View.VISIBLE);
 

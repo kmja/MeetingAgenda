@@ -59,7 +59,9 @@ public class ParkedActivity extends android.app.Activity {
         // get overlay and buttons
         this.overlay = findViewById(R.id.overlay);
         this.edit = (Button) findViewById(R.id.button5);
+        edit.setOnClickListener(clickHandler);
         this.move = (Button) findViewById(R.id.button6);
+        move.setOnClickListener(clickHandler);
         move.setText("Move");
 
         //setup arrow button
@@ -92,11 +94,15 @@ public class ParkedActivity extends android.app.Activity {
             }
             else if (v == move){
                 intent.putExtra("model",model);
+                intent.putExtra("day",currentday);
                 model.addActivity(model.getParkedActivities().get(model.getSelectedParked()),model.getDays().get(0),-1);
                 model.removeParkedActivity(model.getSelectedParked());
             }
             else if(v == edit){
                 intent.putExtra("model",model);
+                intent.putExtra("day",currentday);
+                intent.putExtra("parked",true);
+                intent.putExtra("edit",true);
                 startActivity(intent);
             }
         }

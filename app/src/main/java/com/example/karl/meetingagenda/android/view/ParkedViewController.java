@@ -33,6 +33,7 @@ public class ParkedViewController {
         this.view = view;
 
         this.cancel = (Button) view.view.findViewById(R.id.button4);
+        cancel.setOnClickListener(onClickListener);
         this.overlay = view.view.findViewById(R.id.overlay);
 
         // get subviews in overlay
@@ -40,6 +41,7 @@ public class ParkedViewController {
         this.info = (TextView) view.view.findViewById(R.id.textView6);
         this.description = (TextView) view.view.findViewById(R.id.textView7);
 
+        this.listView = (ListView) view.view.findViewById(R.id.listView2);
         listView.setOnItemClickListener(onItemClickListener);
 
     }
@@ -50,8 +52,24 @@ public class ParkedViewController {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // ladda overlay med selectedparked
             Activity selectedact = model.getParkedActivities().get(position);
+            //set activity as selected parked activity
+            model.setSelectedParked(position);
+            //Load overlay fields
             name.setText(selectedact.getName());
-            info.setText(selectedact.getLength() + " min");
+            String infoString = selectedact.getLength()+" min ";
+            if(selectedact.getType()==1){
+                infoString = infoString+"presentation";
+            }
+            else if(selectedact.getType()==2){
+                infoString = infoString+"group work";
+            }
+            else if(selectedact.getType()==3){
+                infoString = infoString+"discussion";
+            }
+            else if(selectedact.getType()==4){
+                infoString = infoString+"break";
+            }
+            info.setText(infoString);
             description.setText(selectedact.getDescription());
             overlay.setVisibility(View.VISIBLE);
         }

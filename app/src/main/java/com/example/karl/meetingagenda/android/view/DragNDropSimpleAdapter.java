@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 
@@ -74,25 +75,26 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
 	@Override
 	public View getView(int position, View view, ViewGroup group) {
         View row = super.getView(mPosition[position], view, group);
-        LinearLayout linearLayout =(LinearLayout) row.findViewById(R.id.rowBackground);
-/*        if (position == 1) {
-            linearLayout.setBackgroundColor(Color.parseColor("#ffffff"));
-        }*/
+        LinearLayout background =(LinearLayout) row.findViewById(R.id.rowBackground);
+        TextView time = (TextView) row.findViewById(R.id.rowTime);
+
+        // Det borde gå att lägga in starttider på aktiviteter rätt lätt om man
+        // bara kan ladda in model på något sätt
 
         if(activities.get(position).getType() == 1){
-            linearLayout.setBackgroundColor(Color.parseColor("#00628b"));
-            linearLayout.setAlpha(0.8f);
+            background.setBackgroundColor(Color.parseColor("#00628b"));
+            background.setAlpha(0.8f);
         }else if(activities.get(position).getType() == 2){
-            linearLayout.setBackgroundColor(Color.parseColor("#29aba4"));
-            linearLayout.setAlpha(0.8f);
+            background.setBackgroundColor(Color.parseColor("#29aba4"));
+            background.setAlpha(0.8f);
         }
         else if(activities.get(position).getType() == 3){
-            linearLayout.setBackgroundColor(Color.parseColor("#eb7260"));
-            linearLayout.setAlpha(0.8f);
+            background.setBackgroundColor(Color.parseColor("#eb7260"));
+            background.setAlpha(0.8f);
         }
         else if(activities.get(position).getType() == 4){
-            linearLayout.setBackgroundColor(Color.parseColor("#3a9ad9"));
-            linearLayout.setAlpha(0.8f);
+            background.setBackgroundColor(Color.parseColor("#3a9ad9"));
+            background.setAlpha(0.8f);
         }
 
         return row;

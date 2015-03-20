@@ -107,6 +107,7 @@ public class DayActivity extends Activity {
                     // intent.putextra("activity",activity);
                 intent.putExtra("model", model);
                 intent.putExtra("day",currentday);
+                intent.putExtra("edit",true);
                 startActivity(intent);
 
             }

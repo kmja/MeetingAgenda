@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.ActivityView;
 import com.example.karl.meetingagenda.android.view.ActivityViewController;
+
+import org.w3c.dom.Text;
 
 import model.Activity;
 import model.AgendaModel;
@@ -28,10 +31,15 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
     EditText name;
     EditText length;
     RadioGroup radioGroup;
+    RadioButton radiobutton1;
+    RadioButton radiobutton2;
+    RadioButton radiobutton3;
+    RadioButton radiobutton4;
     EditText description;
+    TextView titleText;
     int currentday;
-    RadioButton radioButton;
     boolean parked = false;
+    boolean edit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,10 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         if (intent.getExtras().get("parked") != null){
             parked = (boolean) intent.getExtras().get("parked");
         }
+        if (intent.getExtras().get("edit") != null){
+            edit = (boolean) intent.getExtras().get("edit");
+        }
+
 
 
 
@@ -73,7 +85,51 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         description = (EditText) findViewById(R.id.editText3);
 
+        //if it's an edit of an activity, load the information in the fields
+        //if it's a parked activity, load info from parkedActivities instead
+        if(edit==true){
+            titleText = (TextView) findViewById(R.id.textView);
+            titleText.setText("Edit Activity");
+            this.radiobutton1 = (RadioButton) findViewById(R.id.radioButton1);
+            this.radiobutton2 = (RadioButton) findViewById(R.id.radioButton2);
+            this.radiobutton3 = (RadioButton) findViewById(R.id.radioButton3);
+            this.radiobutton4 = (RadioButton) findViewById(R.id.radioButton4);
+            if(parked == false){
+                name.setText(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getName());
+                length.setText(String.valueOf(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getLength()));
+                if(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getType()==1){
+                    radiobutton1.setChecked(true);
+                }
+                else if(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getType()==2){
+                    radiobutton2.setChecked(true);
+                }
+                else if(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getType()==3){
+                    radiobutton3.setChecked(true);
+                }
+                else if(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getType()==4){
+                    radiobutton4.setChecked(true);
+                }
+                description.setText(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).getDescription());
+            }
+            else if(parked == true){
+                name.setText(model.getParkedActivities().get(model.getSelectedParked()).getName());
+                length.setText(String.valueOf(model.getParkedActivities().get(model.getSelectedParked()).getLength()));
+                if(model.getParkedActivities().get(model.getSelectedParked()).getType()==1){
+                    radiobutton1.setChecked(true);
+                }
+                else if(model.getParkedActivities().get(model.getSelectedParked()).getType()==2){
+                    radiobutton2.setChecked(true);
+                }
+                else if(model.getParkedActivities().get(model.getSelectedParked()).getType()==3){
+                    radiobutton3.setChecked(true);
+                }
+                else if(model.getParkedActivities().get(model.getSelectedParked()).getType()==4){
+                    radiobutton4.setChecked(true);
+                }
+                description.setText(model.getParkedActivities().get(model.getSelectedParked()).getDescription());
+            }
 
+        }
 
 
 
@@ -83,10 +139,18 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         @Override
         public void onClick(View v) {
             if(v == cancelbtn){
-                Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
-                intent.putExtra("model", model);
-                intent.putExtra("day",currentday);
-                startActivity(intent);
+                if (parked == true){
+                    Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
+                    intent.putExtra("model",model);
+                    intent.putExtra("day",currentday);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
+                    intent.putExtra("model", model);
+                    intent.putExtra("day", currentday);
+                    startActivity(intent);
+                }
             }
             else if(v == savebtn){
                 // get user input and add to parked activities
@@ -109,9 +173,23 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
 
                 Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
 
-                if (parked == true){
+                if (parked == true && edit == false){
                     model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
                             Integer.valueOf(String.valueOf(length.getText())), checkedtype));
+                }
+                else if(parked == false && edit == true){
+                    //if it's an edit of an activity, set values of that activity to whatever's in the text fields, and return to dayView
+                    model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).setName(String.valueOf(name.getText()));
+                    model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).setLength(Integer.valueOf(String.valueOf(length.getText())));
+                    model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).setType(checkedtype);
+                    model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()).setDescription(String.valueOf(description.getText()));
+                    intent = new Intent(ActivityActivity.this, DayActivity.class);
+                }
+                else if(parked == true && edit == true){
+                    model.getParkedActivities().get(model.getSelectedParked()).setName(String.valueOf(name.getText()));
+                    model.getParkedActivities().get(model.getSelectedParked()).setLength(Integer.valueOf(String.valueOf(length.getText())));
+                    model.getParkedActivities().get(model.getSelectedParked()).setType(checkedtype);
+                    model.getParkedActivities().get(model.getSelectedParked()).setDescription(String.valueOf(description.getText()));
                 }
                 else {
 

@@ -91,10 +91,10 @@ public class DayView extends Activity implements Observer {
             int typeCount = 0;
             for(int k=0;k<activities.size();k++){
                 if(activities.get(k).getType()==i){
-                    typeCount++;
+                    typeCount = typeCount + activities.get(k).getLength();
                 }
             }
-            Float typeShare = (float) typeCount/activities.size();
+            Float typeShare = (float) typeCount/model.getDays().get(model.getCurrentDay()).getTotalLength();
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, typeShare);
