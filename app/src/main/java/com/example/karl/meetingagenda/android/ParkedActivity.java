@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.ParkedView;
@@ -25,8 +27,9 @@ public class ParkedActivity extends android.app.Activity {
     AgendaModel model;
     ParkedView view;
     GestureDetector gestureDetector;
+    TextView arrowRightbtn;
+    Button addButton;
     int currentday;
-    int buttplugs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,35 @@ public class ParkedActivity extends android.app.Activity {
         ListView listView = (ListView) findViewById(R.id.listView2);
         listView.setOnTouchListener(touchListener);
         parkedView.view.setOnTouchListener(touchListener);
+
+        //setup arrow button
+        this.arrowRightbtn = (TextView) findViewById(R.id.arrowRight);
+        arrowRightbtn.setOnClickListener(clickHandler);
+        //setup add activity button
+        this.addButton = (Button) findViewById(R.id.addButton);
+        addButton.setOnClickListener(clickHandler);
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent;
+            if (v == arrowRightbtn){
+                intent = new Intent(ParkedActivity.this, DayActivity.class);
+                // put extra. model and currentday
+                intent.putExtra("model", model);
+                intent.putExtra("day", currentday);
+                startActivity(intent);
+            }
+            else if(v == addButton){
+                intent = new Intent(ParkedActivity.this, ActivityActivity.class);
+                intent.putExtra("model", model);
+                intent.putExtra("day", model);
+                startActivity(intent);
+            }
+
+        }
+    };
 
     GestureDetector.SimpleOnGestureListener gestureHandler = new GestureDetector.SimpleOnGestureListener() {
         private static final int swipe_threshold = 100;
