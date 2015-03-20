@@ -31,7 +31,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
     EditText description;
     int currentday;
     RadioButton radioButton;
-
+    boolean parked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,10 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
         this.model = (AgendaModel) intent.getExtras().get("model");
         this.currentday = (int) intent.getExtras().get("day");
 
+
+        if (intent.getExtras().get("parked") != null){
+            parked = (boolean) intent.getExtras().get("parked");
+        }
 
 
 
@@ -103,11 +107,18 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                     }
                 }
 
+                Intent intent = new Intent(ActivityActivity.this, ParkedActivity.class);
+                
+                if (parked == true){
+                    model.addParkedActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
+                            Integer.valueOf(String.valueOf(length.getText())));
+                }
+                else {
 
-
-                model.addActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
-                Integer.valueOf(String.valueOf(length.getText())), checkedtype),model.getDays().get(currentday),-1);
-                Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
+                    model.addActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
+                    Integer.valueOf(String.valueOf(length.getText())), checkedtype), model.getDays().get(currentday), -1);
+                    intent = new Intent(ActivityActivity.this, DayActivity.class);
+                }
                 intent.putExtra("model", model);
                 intent.putExtra("day",currentday);
                 startActivity(intent);
