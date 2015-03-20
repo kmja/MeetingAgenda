@@ -88,8 +88,6 @@ public class Day extends Observable implements Serializable {
 	}
 	/**
 	 * moves activity inside one day
-	 * this method will be called when needed from the model
-	 * don't call it directly
 	 */
 	public void moveActivity(int oldPosition, int newPosition) {
 		if(newPosition>oldPosition){

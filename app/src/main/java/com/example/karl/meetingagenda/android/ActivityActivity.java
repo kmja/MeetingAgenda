@@ -30,6 +30,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
     RadioGroup radioGroup;
     EditText description;
     int currentday;
+    RadioButton radioButton;
 
 
     @Override
@@ -71,6 +72,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
 
 
 
+
     }
 
     View.OnClickListener clickHandler = new View.OnClickListener() {
@@ -90,8 +92,21 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                 //RadioButton radioBtn = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
                 //String typee = String.valueOf(radioBtn.getText());
                 //int radioID = Integer.valueOf(String.valueOf(radioBtn.getContentDescription()));
+                int checkedtype = 0;
+                for(int i = 1; i<=4;i++){
+
+                    String viewname = "radioButton" + i;
+                    int viewID = getResources().getIdentifier(viewname,"id",getPackageName());
+                    RadioButton rbtn = (RadioButton) findViewById(viewID);
+                    if (rbtn.isChecked()){
+                        checkedtype = Integer.valueOf(String.valueOf(rbtn.getContentDescription()))-1;
+                    }
+                }
+
+
+
                 model.addActivity(new Activity(String.valueOf(name.getText()), String.valueOf(description.getText()),
-                Integer.valueOf(String.valueOf(length.getText())), 1),model.getDays().get(currentday),-1);
+                Integer.valueOf(String.valueOf(length.getText())), checkedtype),model.getDays().get(currentday),-1);
                 Intent intent = new Intent(ActivityActivity.this, DayActivity.class);
                 intent.putExtra("model", model);
                 intent.putExtra("day",currentday);
