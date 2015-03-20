@@ -97,11 +97,17 @@ public class DayActivity extends Activity {
                     intent  = new Intent(DayActivity.this,ParkedActivity.class);
                     model.addParkedActivity(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()));
                     model.removeActivity(model.getCurrentDay(),model.getSelectedActivity());
+                intent.putExtra("model", model);
+                intent.putExtra("day",currentday);
+                startActivity(intent);
             }else if(v == editbtn){
                     // load activity view with selected activity
                     intent = new Intent(DayActivity.this,ActivityActivity.class);
                     // send additional information in intent!
                     // intent.putextra("activity",activity);
+                intent.putExtra("model", model);
+                intent.putExtra("day",currentday);
+                startActivity(intent);
 
             }
             else if(v == arrowRightbtn){
@@ -131,6 +137,7 @@ public class DayActivity extends Activity {
                     startActivity(intent);
                 }
                 else if(currentday>0){
+                    System.out.println("currenday = "+currentday);
                     intent = new Intent(DayActivity.this,DayActivity.class);
                     model.setCurrentDay(model.getCurrentDay()-1);
                     // put extra. model and currentday
@@ -141,10 +148,11 @@ public class DayActivity extends Activity {
             }
             else{
                     intent = new Intent(DayActivity.this, ActivityActivity.class);
+                intent.putExtra("model", model);
+                intent.putExtra("day",currentday);
+                startActivity(intent);
             }
-            intent.putExtra("model", model);
-            intent.putExtra("day",currentday);
-            startActivity(intent);
+
 
         }
     };

@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:text="Add Activity"
-            android:id="@+id/button10"
+            android:id="@+id/addButton"
             android:layout_weight="1.0"
             android:background="#29aba4"
             android:textColor="#ffffff"

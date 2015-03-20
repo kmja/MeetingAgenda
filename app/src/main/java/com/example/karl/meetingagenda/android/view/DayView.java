@@ -91,7 +91,6 @@ public class DayView extends Activity implements Observer {
             int typeCount = 0;
             for(int k=0;k<activities.size();k++){
                 if(activities.get(k).getType()==i){
-                    System.out.println("TYPE HIT: "+activities.get(k).getType());
                     typeCount++;
                 }
             }

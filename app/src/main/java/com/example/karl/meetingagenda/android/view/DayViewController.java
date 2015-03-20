@@ -89,7 +89,7 @@ public class DayViewController implements View.OnFocusChangeListener {
         // drag N drop listview
         DragNDropListView dragNDropListView = (DragNDropListView) view.view.findViewById(R.id.listView);
 
-        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.view.getContext(),items,R.layout.row_layout,from,new int[]{R.id.rowTitle,R.id.rowTime},R.id.rowBackground,model.getDays().get(model.getCurrentDay()).getActivities());
+        DragNDropSimpleAdapter dragNDropSimpleAdapter = new DragNDropSimpleAdapter(view.view.getContext(),items,R.layout.row_layout,from,new int[]{R.id.rowTitle,R.id.rowTime},R.id.rowMove,model.getDays().get(model.getCurrentDay()).getActivities());
 
         //RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.relativeLayoutDay);
         //rl.addView(dragNDropListView);

@@ -32,5 +32,16 @@
             android:id="@+id/rowTitle"
             android:textSize="26dp"
             android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="≡"
+            android:id="@+id/rowMove"
+            android:textColor="#ffffff"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:paddingRight="16dp" />
     </LinearLayout>
 </RelativeLayout>
