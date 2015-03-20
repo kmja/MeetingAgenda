@@ -152,10 +152,12 @@ public class DayView extends Activity implements Observer {
 
         // if there are activities for that day
         if (this.model.getDays().get(this.model.getCurrentDay()).getActivities().size() != 0){
-            model.Activity selectedactivity = this.model.getDays().get(model.getCurrentDay()).getActivities().get(this.model.getSelectedActivity());
-            activityname.setText(selectedactivity.getName());
-            actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
-            actdescription.setText(selectedactivity.getDescription());
+            if(this.model.getDays().get(model.getCurrentDay()).getActivities().get(this.model.getSelectedActivity())!=null) {
+                model.Activity selectedactivity = this.model.getDays().get(model.getCurrentDay()).getActivities().get(this.model.getSelectedActivity());
+                activityname.setText(selectedactivity.getName());
+                actinfo.setText(selectedactivity.getLength() + " min " + selectedactivity.getType());
+                actdescription.setText(selectedactivity.getDescription());
+            }
         }
     }
 

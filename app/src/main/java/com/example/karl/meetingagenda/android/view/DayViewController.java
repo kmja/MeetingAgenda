@@ -88,9 +88,28 @@ public class DayViewController implements View.OnFocusChangeListener {
             HashMap<String,Object> item = new HashMap<String,Object>();
             String actname = this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getName();
             String time = String.valueOf(this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(i).getLength());
+            // Calculates start time of each activity
+            int dayStartTime = this.model.getDays().get(this.model.getCurrentDay()).getStart();
+            for(int k=0; k<i; k++){
+                dayStartTime += this.model.getDays().get(this.model.getCurrentDay()).getActivities().get(k).getLength();
+            }
+            // Convert minutes into hour:minute format
+            int hours = dayStartTime/60;
+            String startTime = "";
+            if(hours<10) {
+                startTime = "0"+String.valueOf(hours)+":";
+            }
+            else{
+                startTime = String.valueOf(hours)+":";
+            }
+            if((dayStartTime-hours*60)<10){
+                startTime = startTime+"0";
+            }
+            startTime = startTime+String.valueOf(dayStartTime-hours*60);
+            System.out.println(startTime);
             activityArr[i] = actname;
             item.put("name",actname);
-            item.put("time",time);
+            item.put("time",startTime);
             items.add(item);
         }
 
