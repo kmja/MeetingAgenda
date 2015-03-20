@@ -20,6 +20,8 @@ import com.example.karl.meetingagenda.android.view.ParkedViewController;
 import model.Activity;
 import model.AgendaModel;
 
+
+
 public class ParkedActivity extends android.app.Activity {
 
     AgendaModel model;
