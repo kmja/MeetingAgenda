@@ -45,6 +45,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/listView2"
             android:layout_weight="1" />
+        <include
+            layout="@layout/overlay_layout"
+            android:id="@+id/overlay"
+
+            />
     </LinearLayout>
 
 

@@ -12,6 +12,7 @@ public class AgendaModel extends Observable implements Serializable {
 
     int currentday = 0;
     int selectedact = 0;
+    int selectedparked = 0;
 
 
 	/**
@@ -23,7 +24,6 @@ public class AgendaModel extends Observable implements Serializable {
         return d;
     }
 
-	
 	/**
 	 * add an activity to model
 	 */
@@ -129,7 +129,13 @@ public class AgendaModel extends Observable implements Serializable {
     public void removeActivity(int currentday, int selectedactivity){
         List<Activity> activities = this.getDays().get(currentday).getActivities();
         activities.remove(selectedactivity);
+    }
 
+    public int getSelectedParked() {
+        return selectedparked;
+    }
+    public void setSelectedParked(int position){
+        selectedparked = position;
     }
 
 }

@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.karl.meetingagenda.R;
@@ -17,6 +19,7 @@ import com.example.karl.meetingagenda.android.view.ParkedViewController;
 
 import model.Activity;
 import model.AgendaModel;
+import model.Day;
 
 public class ParkedActivity extends android.app.Activity {
 
@@ -24,6 +27,11 @@ public class ParkedActivity extends android.app.Activity {
     ParkedView view;
     GestureDetector gestureDetector;
     int currentday;
+    View overlay;
+    Button cancel;
+    Button edit;
+    Button move;
+    Activity selectedact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +46,12 @@ public class ParkedActivity extends android.app.Activity {
         ParkedView parkedView = new ParkedView(findViewById(R.id.parked_layout),this.model);
         ParkedViewController parkedViewController = new ParkedViewController(parkedView,this.model);
 
+        // get overlay and buttons
+        this.overlay = findViewById(R.id.overlay);
+        this.edit = (Button) findViewById(R.id.button5);
+        this.move = (Button) findViewById(R.id.button6);
+        move.setText("Move");
+
         // Create gesturedetector object
         gestureDetector = new GestureDetector(parkedView.view.getContext(),gestureHandler);
 
@@ -46,6 +60,34 @@ public class ParkedActivity extends android.app.Activity {
         listView.setOnTouchListener(touchListener);
         parkedView.view.setOnTouchListener(touchListener);
     }
+
+    View.OnClickListener clickListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(ParkedActivity.this,ActivityActivity.class);
+            if (v == move){
+                intent.putExtra("model",model);
+                model.addActivity(model.getParkedActivities().get(model.getSelectedParked()),model.getDays().get(0),-1);
+                model.removeParkedActivity(model.getSelectedParked());
+            }
+            else if(v == edit){
+               intent.putExtra("model",model);
+               setIntent(intent);
+            }
+        }
+    };
+
+/*    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // ladda overlay med selectedparked
+            overlay.setVisibility(View.VISIBLE);
+            move.setText("Move");
+
+
+        }
+    };*/
 
     GestureDetector.SimpleOnGestureListener gestureHandler = new GestureDetector.SimpleOnGestureListener() {
         private static final int swipe_threshold = 100;
