@@ -79,18 +79,18 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             linearLayout.setBackgroundColor(Color.parseColor("#ffffff"));
         }*/
 
-        if(activities.get(position).getType() == 0){
+        if(activities.get(position).getType() == 1){
             linearLayout.setBackgroundColor(Color.parseColor("#00628b"));
             linearLayout.setAlpha(0.8f);
-        }else if(activities.get(position).getType() == 1){
+        }else if(activities.get(position).getType() == 2){
             linearLayout.setBackgroundColor(Color.parseColor("#29aba4"));
             linearLayout.setAlpha(0.8f);
         }
-        else if(activities.get(position).getType() == 2){
+        else if(activities.get(position).getType() == 3){
             linearLayout.setBackgroundColor(Color.parseColor("#eb7260"));
             linearLayout.setAlpha(0.8f);
         }
-        else if(activities.get(position).getType() == 3){
+        else if(activities.get(position).getType() == 4){
             linearLayout.setBackgroundColor(Color.parseColor("#3a9ad9"));
             linearLayout.setAlpha(0.8f);
         }

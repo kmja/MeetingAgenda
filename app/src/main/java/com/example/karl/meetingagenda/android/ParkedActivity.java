@@ -84,7 +84,7 @@ public class ParkedActivity extends android.app.Activity {
             else if(v == addButton){
                 intent = new Intent(ParkedActivity.this, ActivityActivity.class);
                 intent.putExtra("model", model);
-                intent.putExtra("day", model);
+                intent.putExtra("day", currentday);
                 startActivity(intent);
 
             }

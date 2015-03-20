@@ -99,7 +99,7 @@ public class ActivityActivity extends android.app.Activity implements View.OnCli
                     int viewID = getResources().getIdentifier(viewname,"id",getPackageName());
                     RadioButton rbtn = (RadioButton) findViewById(viewID);
                     if (rbtn.isChecked()){
-                        checkedtype = Integer.valueOf(String.valueOf(rbtn.getContentDescription()))-1;
+                        checkedtype = Integer.valueOf(String.valueOf(rbtn.getContentDescription()));
                     }
                 }
 

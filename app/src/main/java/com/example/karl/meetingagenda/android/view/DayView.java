@@ -87,7 +87,7 @@ public class DayView extends Activity implements Observer {
         //Note: types är fortfarande 1 lägre än de borde vara. Varför? Activities på dag 2 är dessutom satta till 0 båda två,
         //oavsett vad man säger i AgendaModel
         List<model.Activity> activities = model.getDays().get(model.getCurrentDay()).getActivities();
-        for(int i=0;i<=3;i++) {
+        for(int i=1;i<=4;i++) {
             int typeCount = 0;
             for(int k=0;k<activities.size();k++){
                 if(activities.get(k).getType()==i){
@@ -98,7 +98,7 @@ public class DayView extends Activity implements Observer {
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, typeShare);
-            typeList.get(i).setLayoutParams(param);
+            typeList.get(i-1).setLayoutParams(param);
         }
         // 1. pass context and data to the custom adapter
         //CustomAdapter adapter = new CustomAdapter(this, model.getDays().get(model.getCurrentDay()).getActivities());
