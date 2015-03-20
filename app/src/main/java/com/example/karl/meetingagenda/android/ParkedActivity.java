@@ -74,6 +74,7 @@ public class ParkedActivity extends android.app.Activity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(ParkedActivity.this,ActivityActivity.class);
+            boolean parked = false;
             if (v == arrowRightbtn){
                 intent = new Intent(ParkedActivity.this, DayActivity.class);
                 // put extra. model and currentday
@@ -85,8 +86,9 @@ public class ParkedActivity extends android.app.Activity {
                 intent = new Intent(ParkedActivity.this, ActivityActivity.class);
                 intent.putExtra("model", model);
                 intent.putExtra("day", model);
+                parked = true;
+                intent.putExtra("parked",parked);
                 startActivity(intent);
-
             }
             else if (v == move){
                 intent.putExtra("model",model);
@@ -95,10 +97,8 @@ public class ParkedActivity extends android.app.Activity {
             }
             else if(v == edit){
                 intent.putExtra("model",model);
-                setIntent(intent);
+                startActivity(intent);
             }
-
-
         }
     };
 
@@ -110,7 +110,6 @@ public class ParkedActivity extends android.app.Activity {
             System.out.println("DOWN");
             return true;
         }
-
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             float diffx = e2.getX() - e1.getX();

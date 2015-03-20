@@ -150,7 +150,6 @@ public class DayView extends Activity implements Observer {
         TextView actdescription = (TextView) view.findViewById(R.id.textView7);
 
 
-
         // if there are activities for that day
         if (this.model.getDays().get(this.model.getCurrentDay()).getActivities().size() != 0){
             model.Activity selectedactivity = this.model.getDays().get(model.getCurrentDay()).getActivities().get(this.model.getSelectedActivity());

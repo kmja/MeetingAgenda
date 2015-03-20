@@ -61,6 +61,7 @@ public class ParkedViewController {
         public void onClick(View v) {
             if (v == cancel){
                 overlay.setVisibility(View.GONE);
+
             }
         }
     };
