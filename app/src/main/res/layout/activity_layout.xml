@@ -226,7 +226,7 @@
                             android:id="@+id/radioButton4"
                             android:textColor="#000000"
                             android:textSize="18dp"
-                            android:buttonTint="#ffffff"
+                            android:buttonTint="#3a9ad9"
                             android:contentDescription="4" />
 
                     </LinearLayout>
