@@ -26,22 +26,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 
 import model.Activity;
-import model.AgendaModel;
 
 public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAdapter {
 	int mPosition[];
 	int mHandler;
-    AgendaModel model;
+	List<Activity> activities;
 
-	
-	public DragNDropSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to, int handler) {
+	public DragNDropSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to, int handler, List<Activity> activities) {
 		super(context, data, resource, from, to);
-		
+
+        this.activities = activities;
+
 		mHandler = handler;
 		setup(data.size());
 	}
@@ -54,7 +53,6 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
 	
 	@Override
 	public View getDropDownView(int position, View view, ViewGroup group) {
-
 		return super.getDropDownView(mPosition[position], view, group);
 	}
 	
@@ -75,31 +73,26 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
 	
 	@Override
 	public View getView(int position, View view, ViewGroup group) {
-
-       /* // Setting background color based on activity type
-        int currentDay;
-        currentDay = model.getCurrentDay();
-        List<Activity> activities = model.getDays().get(currentDay).getActivities();
-        LinearLayout background = (LinearLayout) view.findViewById(R.id.rowBackground);
-        if(activities.get(position).getType()==1-1){
-            background.setBackgroundColor(Color.parseColor("#00628b"));
-            background.setAlpha((float) 0.6);
-        }
-        else if(activities.get(position).getType()==2-1){
-            background.setBackgroundColor(Color.parseColor("#29aba4"));
-            background.setAlpha((float) 0.6);
-        }
-        else if(activities.get(position).getType()==3-1){
-            background.setBackgroundColor(Color.parseColor("#eb7260"));
-            background.setAlpha((float) 0.6);
-        }
-        else if(activities.get(position).getType()==4-1){
-            background.setBackgroundColor(Color.parseColor("#3a9ad9"));
-            background.setAlpha((float) 0.6);
+        View row = super.getView(mPosition[position], view, group);
+        LinearLayout linearLayout =(LinearLayout) row.findViewById(R.id.rowBackground);
+/*        if (position == 1) {
+            linearLayout.setBackgroundColor(Color.parseColor("#ffffff"));
         }*/
 
-		return super.getView(mPosition[position], view, group);
-	}
+        if(activities.get(position).getType() == 0){
+            linearLayout.setBackgroundColor(Color.parseColor("#00628b"));
+        }else if(activities.get(position).getType() == 1){
+            linearLayout.setBackgroundColor(Color.parseColor("#29aba4"));
+        }
+        else if(activities.get(position).getType() == 2){
+            linearLayout.setBackgroundColor(Color.parseColor("#eb7260"));
+        }
+        else if(activities.get(position).getType() == 3){
+            linearLayout.setBackgroundColor(Color.parseColor("#3a9ad9"));
+        }
+
+        return row;
+    }
 	
 	@Override
 	public boolean isEnabled(int position) {
