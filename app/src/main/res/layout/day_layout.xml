@@ -20,20 +20,44 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:weightSum="1.0"
             android:background="#00628b">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:text="&lt;"
+                android:id="@+id/arrowLeft"
+                android:textSize="46dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_weight="0.8"
                 android:text="Day 1"
                 android:id="@+id/textView3"
                 android:textStyle="bold"
                 android:textSize="30dp"
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp" />
+                android:paddingBottom="16dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:text=">"
+                android:id="@+id/arrowRight"
+                android:textColor="#ffffff"
+                android:textSize="46dp"
+                android:textStyle="bold"
+                android:layout_gravity="right"
+                android:gravity="center_vertical|center_horizontal" />
         </LinearLayout>
 
         <LinearLayout

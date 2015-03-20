@@ -38,8 +38,8 @@ public class DayActivity extends Activity {
     Button parkbtn;
     Button cancelbtn;
     Button editbtn;
-    Button arrowLeft;
-    Button arrowRight;
+    Button arrowLeftbtn;
+    Button arrowRightbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,17 +75,26 @@ public class DayActivity extends Activity {
         this.addactivitybtn = (Button) findViewById(R.id.button3);
         this.parkbtn = (Button) findViewById(R.id.button6);
         this.editbtn = (Button) findViewById(R.id.button5);
-        //this.arrowLeft = (Button) findViewById(R.id.);
-        //this.arrowRight = (Button) findViewById(R.id.);
+        this.arrowLeftbtn = (Button) findViewById(R.id.arrowLeft);
+        this.arrowRightbtn = (Button) findViewById(R.id.arrowRight);
+
 
         addactivitybtn.setOnClickListener(clickHandler);
         parkbtn.setOnClickListener(clickHandler);
         editbtn.setOnClickListener(clickHandler);
+        arrowLeftbtn.setOnClickListener(clickHandler);
+        arrowRightbtn.setOnClickListener(clickHandler);
+
         //listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
-    }
 
-    View.OnClickListener clickHandler = new View.OnClickListener() {
+
+    //skulle lägga till intents för pilar höger/vänster. Gjorde först en ny onclicklistener = (v) -> etc som nedan, men
+        // det knasade sig, så jag lade in koden i samma clickhandler istället. Nu är det något som har fuckat med den gamla också.
+        // Vid en punkt klickade jag på (v) -> nedan (som då var grönmarkerad) och det expanderade till new OnClickListener blabla.
+        // Tog bort det och skrev dit det som står nu, men det är inte längre grönmarkerat. Nu är det rödmarkerat på clickHandler
+        // och touchListener ovan, och på Override står det "annotations are not allowed here".
+    View.OnClickListener clickHandler = (v) -> {
         @Override
         public void onClick(View v) {
             Intent intent;
@@ -100,12 +109,48 @@ public class DayActivity extends Activity {
                     // intent.putextra("activity",activity);
 
             }
+            else if(v == arrowRightbtn){
+                if(model.getCurrentDay()+1!=days.size()){
+                    model.setCurrentDay(model.getCurrentDay()+1);
+                    intent = new Intent(DayActivity.this,DayActivity.class);
+                    // put extra. model and currentday
+                    intent.putExtra("model",model);
+                    intent.putExtra("day",currentday+1);
+                    startActivity(intent);
+                }else{
+                    model.addDay(8,0);
+                    intent = new Intent(DayActivity.this,DayActivity.class);
+                    model.setCurrentDay(model.getCurrentDay()+1);
+                    // put extra. model and currentday
+                    intent.putExtra("model",model);
+                    intent.putExtra("day",currentday+1);
+                    startActivity(intent);
+                }
+            }
+            else if(v == arrowLeftbtn){
+                if(currentday==0) {
+                    intent = new Intent(DayActivity.this,ParkedActivity.class);
+                    // put extra. model and currentday
+                    intent.putExtra("model",model);
+                    intent.putExtra("day",currentday);
+                    startActivity(intent);
+                }
+                else if(currentday>0){
+                    intent = new Intent(DayActivity.this,DayActivity.class);
+                    model.setCurrentDay(model.getCurrentDay()-1);
+                    // put extra. model and currentday
+                    intent.putExtra("model",model);
+                    intent.putExtra("day",currentday-1);
+                    startActivity(intent);
+                }
+            }
             else{
                     intent = new Intent(DayActivity.this, ActivityActivity.class);
             }
             intent.putExtra("model", model);
             intent.putExtra("day",currentday);
             startActivity(intent);
+
         }
     };
 
