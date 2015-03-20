@@ -3,6 +3,7 @@ package com.example.karl.meetingagenda.android.view;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
@@ -24,6 +25,7 @@ public class ParkedViewController {
     TextView description;
     Activity selectedactivity;
 
+    ListView listView;
 
 
     public ParkedViewController(ParkedView view, AgendaModel model){
@@ -38,7 +40,7 @@ public class ParkedViewController {
         this.info = (TextView) view.view.findViewById(R.id.textView6);
         this.description = (TextView) view.view.findViewById(R.id.textView7);
 
-
+        listView.setOnItemClickListener(onItemClickListener);
 
     }
 
