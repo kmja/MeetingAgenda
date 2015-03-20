@@ -24,6 +24,7 @@ public class ParkedActivity extends android.app.Activity {
     ParkedView view;
     GestureDetector gestureDetector;
     int currentday;
+    int buttplugs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
