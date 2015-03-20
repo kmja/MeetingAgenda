@@ -28,6 +28,7 @@ public class ParkedActivity extends android.app.Activity {
     TextView arrowRightbtn;
     Button addButton;
     int currentday;
+    int buttplugs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
