@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.example.karl.meetingagenda.R;
 import com.example.karl.meetingagenda.android.view.CustomAdapter;
@@ -38,8 +39,8 @@ public class DayActivity extends Activity {
     Button parkbtn;
     Button cancelbtn;
     Button editbtn;
-    Button arrowLeftbtn;
-    Button arrowRightbtn;
+    TextView arrowLeftbtn;
+    TextView arrowRightbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +53,20 @@ public class DayActivity extends Activity {
 
         // check if intent getextras exist
         Intent intent = getIntent();
-        if(intent.getExtras() == null){
+        if (intent.getExtras() == null) {
             // Means app is started for first time so create new agendamodel
             this.model = new AgendaModel().getModelWithExampleData();
-        }else
-        {
+        } else {
             this.model = (AgendaModel) intent.getExtras().get("model");
             currentday = (int) intent.getExtras().get("day");
         }
         this.days = model.getDays();
-        this.view = new DayView(findViewById(R.id.day_layout), this.model,model.getCurrentDay(),inflater);
-        DayViewController dayViewController = new DayViewController(this.view,this.model,model.getCurrentDay());
-
+        this.view = new DayView(findViewById(R.id.day_layout), this.model, model.getCurrentDay(), inflater);
+        DayViewController dayViewController = new DayViewController(this.view, this.model, model.getCurrentDay());
 
 
         // setup on swipe listeners and on click for add activity
-        gestureDetector = new GestureDetector(this.view.view.getContext(),gestureHandler);
+        gestureDetector = new GestureDetector(this.view.view.getContext(), gestureHandler);
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -75,8 +74,8 @@ public class DayActivity extends Activity {
         this.addactivitybtn = (Button) findViewById(R.id.button3);
         this.parkbtn = (Button) findViewById(R.id.button6);
         this.editbtn = (Button) findViewById(R.id.button5);
-        this.arrowLeftbtn = (Button) findViewById(R.id.arrowLeft);
-        this.arrowRightbtn = (Button) findViewById(R.id.arrowRight);
+        this.arrowLeftbtn = (TextView) findViewById(R.id.arrowLeft);
+        this.arrowRightbtn = (TextView) findViewById(R.id.arrowRight);
 
 
         addactivitybtn.setOnClickListener(clickHandler);
@@ -88,16 +87,16 @@ public class DayActivity extends Activity {
         //listView.setOnTouchListener(touchListener);
         view.view.setOnTouchListener(touchListener);
 
-
+    }
     //skulle lägga till intents för pilar höger/vänster. Gjorde först en ny onclicklistener = (v) -> etc som nedan, men
         // det knasade sig, så jag lade in koden i samma clickhandler istället. Nu är det något som har fuckat med den gamla också.
         // Vid en punkt klickade jag på (v) -> nedan (som då var grönmarkerad) och det expanderade till new OnClickListener blabla.
         // Tog bort det och skrev dit det som står nu, men det är inte längre grönmarkerat. Nu är det rödmarkerat på clickHandler
         // och touchListener ovan, och på Override står det "annotations are not allowed here".
-    View.OnClickListener clickHandler = (v) -> {
+    View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent;
+            Intent intent = new Intent(DayActivity.this,ActivityActivity.class);
             if (v == parkbtn){
                     intent  = new Intent(DayActivity.this,ParkedActivity.class);
                     model.addParkedActivity(model.getDays().get(model.getCurrentDay()).getActivities().get(model.getSelectedActivity()));
