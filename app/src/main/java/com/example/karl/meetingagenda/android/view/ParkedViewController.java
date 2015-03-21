@@ -43,7 +43,6 @@ public class ParkedViewController {
 
         this.listView = (ListView) view.view.findViewById(R.id.listView2);
         listView.setOnItemClickListener(onItemClickListener);
-
     }
 
 

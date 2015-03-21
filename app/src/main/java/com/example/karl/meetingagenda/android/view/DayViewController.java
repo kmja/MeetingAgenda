@@ -206,10 +206,15 @@ public class DayViewController implements View.OnFocusChangeListener {
                 InputMethodManager imm = (InputMethodManager) editText.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
                 imm.hideSoftInputFromWindow(editText.getWindowToken(),0);
-
                 handler = true;
 
             }
+            String[] time = String.valueOf(editText.getText()).split(":");
+            int hours = Integer.valueOf(time[0]);
+            int min = Integer.valueOf(time[1]);
+            int totaltime = (hours*60)+min;
+
+            model.getDays().get(model.getCurrentDay()).setStart(totaltime);
             return handler;
         }
     };

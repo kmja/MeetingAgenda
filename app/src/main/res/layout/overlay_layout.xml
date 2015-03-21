@@ -70,7 +70,27 @@
         android:paddingBottom="40dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:background="#e6e6dc"></LinearLayout>
+        android:background="#e6e6dc"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/AddToLayout"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Add to day:"
+            android:id="@+id/textView11"
+            android:visibility="gone"/>
+
+        <EditText
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText5"
+            android:visibility="gone"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"

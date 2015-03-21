@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +35,10 @@ public class ParkedActivity extends android.app.Activity {
     Button cancel;
     Button edit;
     Button move;
+    // set these to visible
+    TextView addtoday;
+    EditText chooseday;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,12 @@ public class ParkedActivity extends android.app.Activity {
         move.setOnClickListener(clickHandler);
         move.setText("Move");
 
+        // edittext for
+        this.chooseday = (EditText) findViewById(R.id.editText5);
+        this.addtoday  = (TextView) findViewById(R.id.textView11);
+        chooseday.setVisibility(View.VISIBLE);
+        addtoday.setVisibility(View.VISIBLE);
+
         //setup arrow button
         this.arrowRightbtn = (TextView) findViewById(R.id.arrowRight);
         arrowRightbtn.setOnClickListener(clickHandler);
@@ -93,10 +104,19 @@ public class ParkedActivity extends android.app.Activity {
                 startActivity(intent);
             }
             else if (v == move){
+                intent = new Intent(ParkedActivity.this,ParkedActivity.class);
                 intent.putExtra("model",model);
                 intent.putExtra("day",currentday);
-                model.addActivity(model.getParkedActivities().get(model.getSelectedParked()),model.getDays().get(0),-1);
-                model.removeParkedActivity(model.getSelectedParked());
+
+                // check so that the day entered in the edittext exists and if so move activity from parked to that day.
+                int day = Integer.valueOf(String.valueOf(chooseday.getText()));
+                if(day <= model.getDays().size() && day != 0){
+                    System.out.println("day: " + day);
+                    model.addActivity(model.getParkedActivities().get(model.getSelectedParked()),model.getDays().get(day-1),-1);
+                    model.removeParkedActivity(model.getSelectedParked());
+                    startActivity(intent);
+                }
+
             }
             else if(v == edit){
                 intent.putExtra("model",model);
